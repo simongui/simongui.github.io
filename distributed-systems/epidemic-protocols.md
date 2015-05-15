@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Consistency Models
+title: Epidemic Protocols
 ---
 
 # {{ page.title }}

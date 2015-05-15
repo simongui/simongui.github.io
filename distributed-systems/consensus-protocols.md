@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Consistency Models
+title: Consensus Protocols
 ---
 
 # {{ page.title }}

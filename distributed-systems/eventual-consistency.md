@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Consistency Models
+title: Eventual Consistency
 ---
 
 # {{ page.title }}
