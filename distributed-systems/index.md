@@ -15,20 +15,20 @@ This page is the home page for information on distributed systems and transactio
 [Notes on distributed systems for young bloods](http://www.somethingsimilar.com/2013/01/14/notes-on-distributed-systems-for-young-bloods/)
 
 # Categories
-[Consistency Models](distributed-systems/consistency-models.html)    
+[Consistency Models](consistency-models.html)    
 Read Uncommitted, Read Committed, Linearizability, Serializability, Sequential, etc.
 
-[Consistency Test Results](distributed-systems/consistency-test-results.html)    
+[Consistency Test Results](consistency-test-results.html)    
 Jepsen tests of Mongo, Elastic Search, Etcd, Consul, Postgres, Kafka, Aerospike, etc.
 
-[Consensus Protocols](distributed-systems/consensus-protocols.html)    
+[Consensus Protocols](consensus-protocols.html)    
 Paxos, Multi-Paxos, Raft, Corfu, etc.
 
-[Eventual Consistency](distributed-systems/eventual-consistency.html)    
+[Eventual Consistency](eventual-consistency.html)    
 Dynamo, CRDT's, etc.
 
-[Epidemic Protocols](distributed-systems/epidemic-protocols.html)    
+[Epidemic Protocols](epidemic-protocols.html)    
 Gossip, Self-Healing Spanning Tree's (PlumTree), etc.
 
-[Post Mortems](distributed-systems/post-mortems.html)    
+[Post Mortems](post-mortems.html)    
 Post mortem (or root cause analysis) write-ups in the industry we can learn from.
