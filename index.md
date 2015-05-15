@@ -4,4 +4,7 @@ title: Simon Guindon
 ---
 
 # Simon Guindon
-Information on distributed systems
+
+
+
+[Information on distributed systems](distributed-systems/index.md)
