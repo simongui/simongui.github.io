@@ -7,14 +7,14 @@ title: Distributed Systems
 
 This page is the home page for information on distributed systems and transaction theory because both are fairly inter-related.
 
-# Introduction material
+## Introduction material
 [Fallacies of distributed computing](http://en.wikipedia.org/wiki/Fallacies_of_distributed_computing)
 
 [The CAP FAQ](http://henryr.github.io/cap-faq/)
 
 [Notes on distributed systems for young bloods](http://www.somethingsimilar.com/2013/01/14/notes-on-distributed-systems-for-young-bloods/)
 
-# Categories
+## Categories
 [Consistency Models](consistency-models.html)    
 Read Uncommitted, Read Committed, Linearizability, Serializability, Sequential, etc.
 
