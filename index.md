@@ -3,8 +3,5 @@ layout: default
 title: Simon Guindon
 ---
 
-# {{ page.title }}
-
-
-
+# Articles
 [Information on distributed systems](distributed-systems)
