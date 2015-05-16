@@ -9,10 +9,11 @@ The C (consistency) in CAP and ACID can cause confusion because both share the s
 
 First let's give a brief summary of what these acryonyms mean.
 
-## ACID
-### Atomicity
+### ACID
+
+#### Atomicity
 - All the changes will happen or none of them will happen.
 
-### Consistency
+#### Consistency
 - Data integrity is preserved before and after a transaction.
 - Constraints, foreign keys, etc.
