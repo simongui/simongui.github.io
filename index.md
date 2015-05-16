@@ -5,3 +5,17 @@ title: Simon Guindon
 
 # Articles
 [Information on distributed systems](distributed-systems)
+
+<ul id="posts" class="twelve columns offset-by-four">
+  {% for post in site.posts %}
+    <li>
+      {% if post.external_url %}
+        <a class="nine columns" href="{{ post.external_url }}">{{ post.title }}</a>
+      {% else %}
+        <a class="nine columns" href="{{ post.url }}">{{ post.title }}</a>
+      {% endif %}
+
+      <span class="two columns">{{ post.date | date: "%b %Y" }}</span>
+    </li>
+  {% endfor %}
+</ul>
