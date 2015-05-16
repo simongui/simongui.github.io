@@ -3,7 +3,7 @@ layout: default
 title: Distributed Systems
 ---
 
-# Distributed Systems
+# {{ page.title }}
 
 This page is the home page for information on distributed systems and transaction theory because both are fairly inter-related.
 
