@@ -6,6 +6,7 @@ title: Simon Guindon
 # Articles
 [Information on distributed systems](distributed-systems)
 
+# Posts
 <ul id="posts" class="twelve columns offset-by-four">
   {% for post in site.posts %}
     <li>
