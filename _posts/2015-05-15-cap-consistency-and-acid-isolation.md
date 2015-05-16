@@ -9,7 +9,7 @@ The C (consistency) in CAP and ACID can cause confusion because both share the s
 
 First let's give a brief summary of what these acryonyms mean.
 
-### ACID
+## ACID
 
 #### Atomicity
 - All the changes will happen or none of them will happen.
