@@ -14,6 +14,8 @@ This page is the home page for information on distributed systems and transactio
 
 [Notes on distributed systems for young bloods](http://www.somethingsimilar.com/2013/01/14/notes-on-distributed-systems-for-young-bloods/)
 
+[Byzantine Fault Tolerance](http://the-paper-trail.org/blog/barbara-liskovs-turing-award-and-byzantine-fault-tolerance/)
+
 ## Categories
 [Consistency Models](consistency-models.html)    
 Read Uncommitted, Read Committed, Linearizability, Serializability, Sequential, etc.
