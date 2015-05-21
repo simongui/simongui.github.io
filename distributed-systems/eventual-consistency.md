@@ -22,7 +22,7 @@ Dynamo can scale to cluster sizes of thousands of nodes that span multiple data 
 
 Convergent (or commutative) replicated data types (also known as conflict-free replicated data types) is a category of research around distributed data structures that can survive network partitions while offering high availability by not requiring coordination or strongly consistent operations. CRDT's track changes using metadata and as the system heals values converge to the correct values.
 
-CRDT's can use vector clocks or dotted version vectors for tracking object update causality using [logical time](http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf){:target="_blank"} rather than chronological time (timestamps which are subject to clock-skew and increased data loss). They use these for causality-based conflict resolution when you merge updates existing on multiple replica nodes (which can happen during a partition).
+CRDT's can use [vector clocks](http://en.wikipedia.org/wiki/Vector_clock){:target="_blank"} or [dotted version vectors](http://arxiv.org/pdf/1011.5808v1.pdf){:target="_blank"} for tracking object update causality using [logical time](http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf){:target="_blank"} rather than chronological time (timestamps which are subject to clock-skew and increased data loss). They use these for causality-based conflict resolution when you merge updates existing on multiple replica nodes (which can happen during a partition).
 
 Some data types that have been designed to be convergent are:    
 **GSet:** A grow only    
