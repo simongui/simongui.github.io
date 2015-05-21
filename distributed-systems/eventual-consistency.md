@@ -36,7 +36,3 @@ Some data types that have been designed to be convergent are counts, sets,
 [Efficient State-based CRDTs by Delta-Mutation](http://arxiv.org/pdf/1410.2803.pdf){:target="_blank"}
 
 [Making Operation-based CRDTs Operation-based](http://haslab.uminho.pt/ashoker/files/opbaseddais14.pdf){:target="_blank"}
-
-[](){:target="_blank"}
-
-[](){:target="_blank"}
