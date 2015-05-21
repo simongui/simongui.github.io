@@ -21,7 +21,7 @@ Dynamo can scale to cluster sizes of thousands of nodes that span multiple data 
 
 Convergent (or commutative) replicated data types (also known as conflict-free replicated data types) is a category of research around distributed data structures that can survive network partitions while offering high availability by not requiring coordination or strongly consistent operations. CRDT's track changes using metadata and as the system heals values converge to the correct values.
 
-Some data types that have been designed to be convergent are: 
+Some data types that have been designed to be convergent are:    
 * GSet: A grow only    
 * 2PSet: A two phase set that supports removing an element for ever    
 * GCounter: A grow only counter    
