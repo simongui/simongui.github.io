@@ -33,7 +33,9 @@ Some data types that have been designed to be convergent are:
 **RWLWWSet:** Last-writer-wins set with remove wins bias (SoundCloud inspired)    
 **LWWReg:** Last-writer-wins register    
 **EWFlag:** Flag with enable/disable. Enable wins (Riak Flag inspired)    
-**DWFlag:** Flag with enable/disable. Disable wins (Riak Flag inspired)    
+**DWFlag:** Flag with enable/disable. Disable wins (Riak Flag inspired)   
+
+Carlos Baquero has an implementation of these [on GitHub](https://github.com/CBaquero/delta-enabled-crdts){:target="_blank"}
 
 [Designing a commutative replicated data type](http://arxiv.org/pdf/0710.1784v1.pdf){:target="_blank"}
 
