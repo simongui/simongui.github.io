@@ -25,7 +25,7 @@ Some data types that have been designed to be convergent are counts, sets,
 
 [Designing a commutative replicated data type](http://arxiv.org/pdf/0710.1784v1.pdf){:target="_blank"}
 
-[CRDTs: Consistency without concurrency control](http://arxiv.org/pdf/0907.0929v1.pdf)
+[CRDTs: Consistency without concurrency control](http://arxiv.org/pdf/0907.0929v1.pdf){:target="_blank"}
 
 [A comprehensive study of Convergent and Commutative Replicated Data Types](https://hal.inria.fr/inria-00555588/document){:target="_blank"}
 
