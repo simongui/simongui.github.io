@@ -16,6 +16,8 @@ This page is the home page for information on distributed systems and transactio
 
 [Byzantine Fault Tolerance](http://the-paper-trail.org/blog/barbara-liskovs-turing-award-and-byzantine-fault-tolerance/){:target="_blank"}
 
+[Time, Clocks, and the Ordering of Events in a Distributed System](http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf){:target="_blank"}
+
 ## Categories
 [Consistency Models](consistency-models.html)    
 Read Uncommitted, Read Committed, Linearizability, Serializability, Sequential, etc.
