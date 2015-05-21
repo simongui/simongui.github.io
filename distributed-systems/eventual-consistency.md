@@ -37,6 +37,7 @@ Some data types that have been designed to be convergent are:
 
 Carlos Baquero has an implementation of these [on GitHub](https://github.com/CBaquero/delta-enabled-crdts){:target="_blank"}
 
+#### References
 [Designing a commutative replicated data type](http://arxiv.org/pdf/0710.1784v1.pdf){:target="_blank"}
 
 [CRDTs: Consistency without concurrency control](http://arxiv.org/pdf/0907.0929v1.pdf){:target="_blank"}
