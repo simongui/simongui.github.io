@@ -5,11 +5,15 @@ title: Eventual Consistency
 
 # {{ page.title }}
 
-There has been a lot of research and innovations around eventually consistent data stores, data structures and protocols in the last 10 years. This material focuses on improving availability at the cost of consistency. This should not be confused with correctness because there has been a lot of research around convergence.
+Eventual consistency is a liveness property. Eventually consistent trade-offs are chosen to offer higher availability and/or performance (in CAP terminology AP biased trade-offs not CP) by sacrificing consistency guarantees. Strong consistency (linearizability, serializability, sequential, etc) can require coordination which reduces availability because it is not tolerant to failures and can reject operations for periods of time. To achieve high availability some systems allow writes and reads to happen on any side of a partition. The challenge is what to do with conflicting changes when the system heals.
+
+Convergence requires metadata like [logical clocks](http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf){:target="_blank"} and storing casual history. This comes at a cost. Some systems choose to provide weaker correctness and avoid recording and merging casual history by providing LWW (last write wins) guarantees.
+
+There has been a lot of research and innovations around causality and how to make storing the casual history more efficient and how to prune history that is unneccessary after convergence ([distributed garbage collection](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.30.7337&rep=rep1&type=pdf){:target="_blank"}).
 
 ## Amazon Dynamo 
 
-Amazon Dynamo discusses an approach to building a key-value store that offers high availability and makes explicit trade-offs (in CAP terminology AP biased trade-offs not CP) to increase the availability of the system while offering mechanisms for convergence. Dynamo is a DHT (distributed hashtable) that handles sharding, replicating and repairing the keyspace. Dynamo does this by combining epidemic protocols like gossip with transational concepts of quorums, sloppy quorums, anti-entropy using read repairs, and merkle tree's.
+Amazon Dynamo discusses an approach to building a key-value store that offers high availability and makes explicit trade-offs (AP biased trade-offs) to increase the availability of the system while offering mechanisms for convergence. Dynamo is a DHT (distributed hashtable) that handles sharding, replicating and repairing the keyspace. Dynamo does this by combining epidemic protocols like gossip with transational concepts of quorums, sloppy quorums, anti-entropy using read repairs, and merkle tree's.
 
 Implementations of Amazon Dynamo include Apache Cassandra (Google BigTable data model with Dynamo inspired distribution, Riak, Apache Voldemort). Some of the Dynamo implementations deviate from the original Amazon paper. Some of these implementations have added the optional ability to execute strongly consistent operations such as Cassandra and Riak's paxos inspired transactions.
 
@@ -38,7 +42,10 @@ Some data types that have been designed to be convergent are:
 **EWFlag:** Flag with enable/disable. Enable wins (Riak Flag inspired)    
 **DWFlag:** Flag with enable/disable. Disable wins (Riak Flag inspired)   
 
-Carlos Baquero has an implementation of these [on GitHub](https://github.com/CBaquero/delta-enabled-crdts){:target="_blank"}
+#### Implementations
+Carlos Baquero has a C++ implementation of these [on GitHub](https://github.com/CBaquero/delta-enabled-crdts){:target="_blank"}
+
+Cassandra and Riak (Dynamo implementations) both have PNCounter support. PNCounters allow writes and reads to occur at all times no matter how many nodes have failed or which side of a partition you are on. When the system heals the changes converge by merging all the changes together into a correct final value.
 
 #### References
 [Designing a commutative replicated data type](http://arxiv.org/pdf/0710.1784v1.pdf){:target="_blank"}    
