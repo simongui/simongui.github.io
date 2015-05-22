@@ -10,7 +10,7 @@ Eventual consistency is a liveness property. Eventually consistent trade-offs ar
 ## Casual history
 Convergence requires metadata. One example is storing casual history with a `vector clock` or a `dotted version vector` `logical clock`. This comes at a cost. Some systems choose to provide weaker correctness and avoid recording and merging casual history by reducing metadata and providing LWW (last write wins) guarantees using timestamps.
 
-There has been a lot of research and innovations around causality and how to make storing the casual history more efficient and how to prune history that is unneccessary after convergence using `distributed garbage collection`.
+There has been a lot of research and innovations around causality and how to make storing the casual history more efficient and how to prune history that is unneccessary after convergence using distributed garbage collection.
 
 ## Anti-entropy
 TODO...
