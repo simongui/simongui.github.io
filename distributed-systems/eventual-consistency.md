@@ -19,8 +19,23 @@ Implementations of Amazon Dynamo include Apache Cassandra (Google BigTable data 
 
 Dynamo can scale to cluster sizes of thousands of nodes that span multiple data centers.
 
+#### Implementations
+**Apache Cassandra**
+**Riak**
+**Voldemort**
+
+Comparions between Cassandra and Riak happen quite frequently because they are the 2 most popular Dynamo implementations. Both offer different guarantees. Both also offer strongly consistent operations using Paxos inspired transactions. Cassandra and Riak aren't only eventually consistent data stores anymore. Both Cassandra and Riak offer some CRDT's (convergent replicated data types, more on these below) but their implementations and guarantees differ.
+
+**CRDT's**    
+Cassandra and Riak supports distributed counters in the form of a PNCounter but Cassandra differs from the actual PNCounter material. PNCounters store casual history on each node in the form of `NodeId:IncrementValue` and the sum of the history from all the nodes results in the final counter value. Cassandra deviates from the PNCounter design and each node stores it's count value versions and not the actual mutation increments in the form of `Version:Count`. Combining all the latest versions results in the counters final value.
+
+**Cassandra consistency levels**    
+Cassandra supports what they call consistency levels. The client on a read or write operation can choose what consistency level it wants the operation to require. Some examples of supported consistency levels are `Any`, `One`, `Two`, `Local Quorum`, `Quorum` and `All`. At first glance this appears to be safety guarantees but this is not the case. If the replication factor is 3 and you issue a write with consistency level quorum and 1 write succeeds and 2 writes fail the 1 write that succeeded is not rolled back. All it indicates to the client is the desired durability of 2 (majority) was not reached. The 1 succeeded write will eventually propagate to the other 2 nodes as the system heals using `anti-entropy` (more on anti-entropy below).
+
 #### References
 [Amazon Dynamo: Amazon’s Highly Available Key-value Store](http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf){:target="_blank"}
+
+## Anti-entropy
 
 ## CRDT: Convergent Replicated Data Types
 
@@ -48,6 +63,7 @@ Carlos Baquero has a C++ implementation of these [on GitHub](https://github.com/
 Cassandra and Riak (Dynamo implementations) both have PNCounter support. PNCounters allow writes and reads to occur at all times no matter how many nodes have failed or which side of a partition you are on. When the system heals the changes converge by merging all the changes together into a correct final value.
 
 #### References
+[Summary of different types of CRDT's and how they work](https://github.com/pfraze/crdt_notes){:target="_blank"}    
 [Designing a commutative replicated data type](http://arxiv.org/pdf/0710.1784v1.pdf){:target="_blank"}    
 [CRDTs: Consistency without concurrency control](http://arxiv.org/pdf/0907.0929v1.pdf){:target="_blank"}    
 [A comprehensive study of Convergent and Commutative Replicated Data Types](https://hal.inria.fr/inria-00555588/document){:target="_blank"}    
