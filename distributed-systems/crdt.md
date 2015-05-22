@@ -5,7 +5,7 @@ title: Convergent Replicated Data Types
 
 # {{ page.title }}
 
-CRDT's, convergent (or commutative) replicated data types (also known as conflict-free replicated data types) is a category of research around distributed data structures that can survive network partitions while offering high availability by not requiring coordination or strongly consistent operations. CRDT's track changes using causal history and metadata. As the system heals values converge to the correct values.
+CRDT's, convergent (or commutative) replicated data types (also known as conflict-free replicated data types) is a category of research around distributed data structures that can survive network partitions while offering high availability by not requiring coordination or strongly consistent operations. CRDT's track changes using causal history and metadata. Reads and writes can happen on any node and as the system heals the values converge to the correct values.
 
 CRDT's can use `vector clocks` or `dotted version vectors` for tracking object update causality using logical time rather than chronological time (timestamps which are subject to clock-skew and increased data loss). They use these for causality-based conflict resolution when you merge updates existing on multiple replica nodes (which can happen during a partition).
 
@@ -26,7 +26,11 @@ Some data types that have been designed to be convergent are:
 ## Implementations
 Carlos Baquero has a C++ implementation of these [on GitHub](https://github.com/CBaquero/delta-enabled-crdts){:target="_blank"}.
 
+##### Distributed counters
 Cassandra and Riak supports distributed counters in the form of a `PNCounter` but Cassandra differs from the actual `PNCounter` material. `PNCounters` store casual history on each node in the form of `NodeId:IncrementValue` and the sum of the history from all the nodes results in the final counter value. Cassandra deviates from the `PNCounter` design and each node stores the versions of count values and not the actual mutation increments in the form of `Version:Count` that you see in the CRDT research papers. Combining all the latest versions results in the counters final value.
+
+##### Sets and maps
+Riak supports sets and maps as `ORSWOT`.
 
 ## References
 [Logical clocks](http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf){:target="_blank"}   
