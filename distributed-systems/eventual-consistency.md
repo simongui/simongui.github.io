@@ -18,6 +18,7 @@ TODO...
 ## References
 [Amazon Dynamo](dynamo.html)    
 [Convergent replicated data types](crdt.html)    
-[logical clocks](http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf){:target="_blank"}   
+[Logical clocks](http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf){:target="_blank"}   
+[Vector clocks](http://en.wikipedia.org/wiki/Vector_clock){:target="_blank"}    
 [Dotted version vectors](http://arxiv.org/pdf/1011.5808v1.pdf){:target="_blank"}    
 [Distributed garbage collection](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.30.7337&rep=rep1&type=pdf){:target="_blank"}     
