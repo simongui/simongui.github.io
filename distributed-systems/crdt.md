@@ -23,12 +23,12 @@ Some data types that have been designed to be convergent are:
 **EWFlag:** Flag with enable/disable. Enable wins (Riak Flag inspired)    
 **DWFlag:** Flag with enable/disable. Disable wins (Riak Flag inspired)   
 
-#### Implementations
+## Implementations
 Carlos Baquero has a C++ implementation of these [on GitHub](https://github.com/CBaquero/delta-enabled-crdts){:target="_blank"}.
 
 Cassandra and Riak (Dynamo implementations) both have PNCounter support. PNCounters allow writes and reads to occur at all times no matter how many nodes have failed or which side of a partition you are on. When the system heals the changes converge by merging all the changes together into a correct final value.
 
-#### References
+## References
 [Logical clocks](http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf){:target="_blank"}   
 [Vector clocks](http://en.wikipedia.org/wiki/Vector_clock){:target="_blank"}    
 [Dotted version vectors](http://arxiv.org/pdf/1011.5808v1.pdf){:target="_blank"}    
