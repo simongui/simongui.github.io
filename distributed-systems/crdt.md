@@ -24,7 +24,7 @@ Some data types that have been designed to be convergent are:
 **DWFlag:** Flag with enable/disable. Disable wins (Riak Flag inspired)   
 
 #### Implementations
-Carlos Baquero has a C++ implementation of these [on GitHub](https://github.com/CBaquero/delta-enabled-crdts){:target="_blank"}
+Carlos Baquero has a C++ implementation of these [on GitHub](https://github.com/CBaquero/delta-enabled-crdts){:target="_blank"}.
 
 Cassandra and Riak (Dynamo implementations) both have PNCounter support. PNCounters allow writes and reads to occur at all times no matter how many nodes have failed or which side of a partition you are on. When the system heals the changes converge by merging all the changes together into a correct final value.
 
