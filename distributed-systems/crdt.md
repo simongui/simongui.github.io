@@ -1,6 +1,6 @@
 ---
 layout: default
-title: CRDT: Convergent Replicated Data Types
+title: CRDT Convergent Replicated Data Types
 ---
 
 # {{ page.title }}
