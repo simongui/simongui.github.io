@@ -11,8 +11,9 @@ CRDT's can use `vector clocks` or `dotted version vectors` for tracking object u
 
 There are 2 types of CRDT's. State-based (CvRDT) and operation-based (CmRDT).
 
-`7`    
 > State-based mechanisms (CvRDTs) are simple to reason about, since all necessary information is captured by the state. They require weak channel assumptions, allowing for unknown numbers of replicas. However, sending state may be inefficient for large objects; this can be tackled by shipping deltas, but this requires mechanisms similar to the op-based approach. Historically, the state-based approach is used in file systems such as NFS, AFS, Coda, and in key-value stores such as Dynamo and Riak.
+
+-- <cite>[7] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 > Specifying operation-based objects (CmRDTs) can be more complex since it requires reasoning about history, but conversely they have greater expressive power. The payload can be simpler since some state is effectively offloaded to the channel. Op-based replication is more demanding of the channel, since it requires reliable broadcast, which in general requires tracking group membership. Historically, op-based approaches have been used in cooperative systems such as Bayou, Rover, IceCube, Telex.
 
