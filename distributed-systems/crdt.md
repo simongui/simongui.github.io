@@ -69,11 +69,23 @@ Some data types that have been designed to be convergent are:
 
 -- <cite>[7 section 3.3.1] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
+**2P-Set**
 
+> Our second variant is a Set where an element may be added and removed, but never added again thereafter. This Two-Phase Set (2P-Set) is specified in Specification 12 and illustrated in Figure 3. It combines a G-Set for adding with another for removing; the latter is col- loquially known as the tombstone set. To avoid anomalies, removing an element is allowed only if the source observes that the element is in the set.
+> 
+> State-based 2P-Set The state-based variant is in Specification 12. The payload is com- posed of local set A for adding, and local set R for removing. The lookup operation checks that the element has been added but not yet removed. Adding or removing a same element twice has no effect, nor does adding an element that has already been removed. The merge procedure computes a LUB by taking the union of the individual added- and removed-sets. Therefore, this is indeed a CRDT.
+>
+> Note that a tombstone is required to ensure that, if a removed element is received by a downstream replica before its added counterpart, the effect of the remove still takes precedence.
+>
+> Op-based 2P-Set Consider now the op-based variant of 2P-Set. Concurrent adds of the same element commute, as do concurrent removes. Concurrent operations on different elements commute. Operation pairs on the same element add(e)/add(e) and remove(e) ∥d remove(e) commute by definition; and remove(e) can occur only after add(e). It follows that this data type is indeed a CRDT.
+> 
+> U-Set 2P-Set can be simplified under two standard assumptions, as in Specification 13. If elements are unique, a removed element will never be added again.5 If, furthermore, a downstream precondition ensures that add(e) is delivered before remove(e), there is no need to record removed elements, and the remove-set is redundant. (Causal delivery is sufficient to ensure this precondition.) Spec. 13 captures this data type, which we call U-Set.
+> 
+> If we assume (as seems to be the practice) that every element in a shopping cart is unique, then U-Set satisfies the intuitive properties requested of a shopping cart, without the Dynamo anomalies described in Section 3.2.2.
+>
+> U-Set is a CRDT. As every element is assumed unique, adds are independent. A remove operation must be causally after the corresponding add. Accordingly, there can be no concurrent add and remove of the same element.
 
-
-
-
+-- <cite>[7 section 3.3.2] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 
 
