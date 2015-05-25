@@ -15,7 +15,7 @@ There are 2 types of CRDT's. State-based (CvRDT) and operation-based (CmRDT).
 >
 > Specifying operation-based objects (CmRDTs) can be more complex since it requires reasoning about history, but conversely they have greater expressive power. The payload can be simpler since some state is effectively offloaded to the channel. Op-based replication is more demanding of the channel, since it requires reliable broadcast, which in general requires tracking group membership. Historically, op-based approaches have been used in cooperative systems such as Bayou, Rover, IceCube, Telex. 
 
--- <cite>[7] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+-- <cite>[7 section 2.4] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 Some data types that have been designed to be convergent are:    
 
@@ -32,6 +32,15 @@ Some data types that have been designed to be convergent are:
 > This version makes two important assumptions: the payload does not overflow, and the set of replicas is well-known. Note however that the op-based version implicitly makes the same two assumptions.
 > 
 > Alternatively, G-Set (described later, Section 3.3.1) can serve as an increment-only counter. G-Set works even when the set of replicas is not known.
+
+-- <cite>[7 section 3.1.2] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+
+**State-based PN Counter**
+> It is not straightforward to support decrement with the previous representation, because this operation would violate monotonicity of the semilattice. Furthermore, since merge is a max operation, decrement would have no effect.
+
+> Our solution, PN-Counter basically combines two G-Counters. Its payload consists of two vectors: P to register increments, and N for decrements. Its value is the difference between the two corresponding G-Counters, its partial order is the conjunction of the corresponding partial orders, and merge merges the two vectors.
+
+-- <cite>[7 section 3.1.3] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 
 
