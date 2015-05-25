@@ -14,8 +14,8 @@ There are 2 types of CRDT's. State-based (CvRDT) and operation-based (CmRDT).
 > State-based mechanisms (CvRDTs) are simple to reason about, since all necessary information is captured by the state. They require weak channel assumptions, allowing for unknown numbers of replicas. However, sending state may be inefficient for large objects; this can be tackled by shipping deltas, but this requires mechanisms similar to the op-based approach. Historically, the state-based approach is used in file systems such as NFS, AFS, Coda, and in key-value stores such as Dynamo and Riak.
 >
 > Specifying operation-based objects (CmRDTs) can be more complex since it requires reasoning about history, but conversely they have greater expressive power. The payload can be simpler since some state is effectively offloaded to the channel. Op-based replication is more demanding of the channel, since it requires reliable broadcast, which in general requires tracking group membership. Historically, op-based approaches have been used in cooperative systems such as Bayou, Rover, IceCube, Telex. 
-
--- <cite>[7 section 2.4] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+> 
+> -- <cite>[7 section 2.4] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 Some data types that have been designed to be convergent are:    
 
@@ -32,22 +32,22 @@ Some data types that have been designed to be convergent are:
 > This version makes two important assumptions: the payload does not overflow, and the set of replicas is well-known. Note however that the op-based version implicitly makes the same two assumptions.
 > 
 > Alternatively, G-Set (described later, Section 3.3.1) can serve as an increment-only counter. G-Set works even when the set of replicas is not known.
-
--- <cite>[7 section 3.1.2] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+> 
+> -- <cite>[7 section 3.1.2] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **State-based PN Counter**
 
 > It is not straightforward to support decrement with the previous representation, because this operation would violate monotonicity of the semilattice. Furthermore, since merge is a max operation, decrement would have no effect.
 > 
 > Our solution, PN-Counter basically combines two G-Counters. Its payload consists of two vectors: P to register increments, and N for decrements. Its value is the difference between the two corresponding G-Counters, its partial order is the conjunction of the corresponding partial orders, and merge merges the two vectors.
-
--- <cite>[7 section 3.1.3] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+> 
+> -- <cite>[7 section 3.1.3] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **LWW-Register: Last-Writer-Wins Register**
 
 > Last-Writer-Wins Register (LWW-Register) creates a total order of assignments by associating a timestamp with each update. Timestamps are assumed unique, totally ordered, and consistent with causal order; i.e., if assignment 1 happened-before assignment 2 , the former’s timestamp is less than the latter’s. This may be implemented as a per-replica counter concatenated with a unique replica identifier, such as its MAC address.
-
--- <cite>[7 section 3.2.1] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+> 
+> -- <cite>[7 section 3.2.1] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **MV-Register: Multi-Value Register**
 
@@ -56,8 +56,8 @@ Some data types that have been designed to be convergent are:
 > To detect concurrency, a scalar timestamp (as above) is insufficient. Therefore the state- based payload is a set of (X, versionVector) pairs, as shown in Spec. 10, and illustrated in Figure 9 (the op-based specification is left as an exercise to the reader). A value operation returns a copy of the payload. As usual, assign overwrites; to this effect, it computes a version vector that dominates all the previous ones. Operation merge takes the union of every element in each input set that is not dominated by an element in the other input set.
 > 
 > As noted in the Dynamo article [10], Amazon’s shopping cart presents an anomaly, whereby a removed book may re-appear. This is illustrated in the example of Figure 10. The problem is that, MV-Register does not behave like a set, contrary to what one might expect since its payload is a set. We will present clean specifications of Sets in Section 3.3.
-
--- <cite>[7 section 3.2.2] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+> 
+> -- <cite>[7 section 3.2.2] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **G-Set: Grow-Only Set**
 
@@ -66,8 +66,8 @@ Some data types that have been designed to be convergent are:
 > In both the state- and op-based approaches, the payload is a set. Since add is based on union, and union is commutative, the op-based implementation converges; G-Set is a CmRDT.
 > 
 > In the state-based approach, add modifies the local state by a union. We define a partial order on some states S and T as S ≤ T ⇔ S ⊆ T and the merge operation as merge(S, T) = S ∪ T. Thus defined, states form a monotonic semilattice and merge is a LUB operation; G-Set is a CvRDT.
-
--- <cite>[7 section 3.3.1] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+> 
+> -- <cite>[7 section 3.3.1] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **2P-Set: Two-Phase Set**
 
@@ -84,14 +84,14 @@ Some data types that have been designed to be convergent are:
 > If we assume (as seems to be the practice) that every element in a shopping cart is unique, then U-Set satisfies the intuitive properties requested of a shopping cart, without the Dynamo anomalies described in Section 3.2.2.
 >
 > U-Set is a CRDT. As every element is assumed unique, adds are independent. A remove operation must be causally after the corresponding add. Accordingly, there can be no concurrent add and remove of the same element.
-
--- <cite>[7 section 3.3.2] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+> 
+> -- <cite>[7 section 3.3.2] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **LWW-element-Set: Last write wins element set**
 
 > An alternative LWW-based approach,6 which we call LWW-element-Set (see Figure 12), attaches a timestamp to each element (rather than to the whole set, as in Figure 8). Con- sider add-set A and remove-set R, each containing (element,timestamp) pairs. To add (resp. remove) an element e, add the pair (e,now()), where now was specified earlier, to A (resp. to R). Merging two replicas takes the union of their add-sets and remove-sets. An element e is in the set if it is in A, and it is not in R with a higher timestamp: lookup(e) = ∃t,∀t′ > t : (e,t) ∈ A ∧ (e,t′) ∈/ R). Since it is based on LWW, this data type is convergent.
-
--- <cite>[7 section 3.3.3] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+> 
+> -- <cite>[7 section 3.3.3] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **PN-Set**
 
@@ -104,8 +104,8 @@ Some data types that have been designed to be convergent are:
 > An alternative construction due to Molli, Weiss and Skaf [private communication] is presented in Specification 14. To avoid the above add anomaly, add increments a negative count of k by |k| + 1; however this presents other anomalies, for instance where remove has no effect.
 >
 > Both these constructs are CRDTs because they combine two CRDTS, a Set and a Counter.
-
--- <cite>[7 section 3.3.4] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+> 
+> -- <cite>[7 section 3.3.4] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **OR-Set: Observed-Remove Set**
 
@@ -122,14 +122,14 @@ Some data types that have been designed to be convergent are:
 > This behaviour is illustrated in Figure 14. The two add(a) operations generate unique tags α and β. The remove(a) called at the top replica translates to removing (a,α) down- stream. The add called at the second replica is concurrent to the remove of the first one, therefore (a,β) remains in the final state.
 > 
 > OR-Set is a CRDT. Concurrent adds commute since each one is unique. Concurrent removes commute because any common pairs have the same effect, and any disjoint pairs have independent effects. Concurrent add(e) and remove(f) also commute: if e ̸= f they are independent, and if e = f the remove has no effect.
-
--- <cite>[7 section 3.3.5] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+> 
+> -- <cite>[7 section 3.3.5] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **Add-wins Replicated Sets**
 
 > Considering the case of an add wins semantics we now recall [9] the CRDT design of an Observed Remove Set, or OR-Set, and then introduce an optimized design that preserves the OR-Set behaviour and greatly improves its space complexity.
-
--- <cite>[8 section 4] An Optimized Conflict-free Replicated Set</cite>
+> 
+> -- <cite>[8 section 4] An Optimized Conflict-free Replicated Set</cite>
 
 **Add-only monotonic DAG**
 
@@ -140,16 +140,16 @@ Some data types that have been designed to be convergent are:
 > Add-only Monotonic DAG is a CRDT, because concurrent addEdge (resp. addBetween) either concern different edges (resp. vertices) in which case they are independent, or the same edge (resp. vertex), in which case the execution is idempotent.
 > 
 > Generalising monotonic DAG to removals proves problematic. It should be OK to remove an edge (expressed as a precondition on removeEdge) as long as this does not disrupt paths between distinct vertices. Unfortunately, this is not live.
-
--- <cite>[7 section 3.4.1] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+> 
+> -- <cite>[7 section 3.4.1] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **Add-Remove Partial Order data type**
 
 > The above issues with vertex removal do not occur if we consider a Partial Order data type rather than a DAG. Since a partial order is transitive, implicitly all alternate paths exist; thus the problematic precondition on vertex removal is not necessary. For the representation, we use a minimal DAG and compute transitive relations on the fly (operation before). To ensure transitivity, a removed vertex is retained as a tombstone. Thus, our Spec. uses a 2P-Set for vertices, and a G-Set for edges.
 > 
 > We manage vertices as a 2P-Set. Concurrent addBetweens are either independent or idempotent. Any dependence between addBetween and remove is resolved by causal delivery. Thus this data type is a CRDT.
-
--- <cite>[7 section 3.4.2] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+> 
+> -- <cite>[7 section 3.4.2] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **RGA: Replicated Growable Array**
 
