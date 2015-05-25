@@ -38,10 +38,45 @@ Some data types that have been designed to be convergent are:
 **State-based PN Counter**
 
 > It is not straightforward to support decrement with the previous representation, because this operation would violate monotonicity of the semilattice. Furthermore, since merge is a max operation, decrement would have no effect.
-
+> 
 > Our solution, PN-Counter basically combines two G-Counters. Its payload consists of two vectors: P to register increments, and N for decrements. Its value is the difference between the two corresponding G-Counters, its partial order is the conjunction of the corresponding partial orders, and merge merges the two vectors.
 
 -- <cite>[7 section 3.1.3] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+
+**Last-Writer-Wins Register (LWW-Register)**
+
+> Last-Writer-Wins Register (LWW-Register) creates a total order of assignments by associating a timestamp with each update. Timestamps are assumed unique, totally ordered, and consistent with causal order; i.e., if assignment 1 happened-before assignment 2 , the former’s timestamp is less than the latter’s. This may be implemented as a per-replica counter concatenated with a unique replica identifier, such as its MAC address.
+
+-- <cite>[7 section 3.2.1] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+
+**Multi-Value Register (MV-Register)**
+
+> An alternative semantics is to define a LUB operation that merges concurrent assignments, for instance taking their union, as in file systems such as Coda [19] or in Amazon’s shopping cart [10]. Clients can later reduce multiple values to a single one, by a new assignment. Alternatively, in Ficus [34] merge is an application-specific resolver procedure.
+> 
+> To detect concurrency, a scalar timestamp (as above) is insufficient. Therefore the state- based payload is a set of (X, versionVector) pairs, as shown in Spec. 10, and illustrated in Figure 9 (the op-based specification is left as an exercise to the reader). A value operation returns a copy of the payload. As usual, assign overwrites; to this effect, it computes a version vector that dominates all the previous ones. Operation merge takes the union of every element in each input set that is not dominated by an element in the other input set.
+> 
+> As noted in the Dynamo article [10], Amazon’s shopping cart presents an anomaly, whereby a removed book may re-appear. This is illustrated in the example of Figure 10. The problem is that, MV-Register does not behave like a set, contrary to what one might expect since its payload is a set. We will present clean specifications of Sets in Section 3.3.
+
+-- <cite>[7 section 3.2.2] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+
+**Grow-Only Set (G-Set)**
+
+> The simplest solution is to avoid remove altogether. A Grow-Only Set (G-Set) supports operations add and lookup only. The G-Set is useful as a building block for more complex constructions.
+> 
+> In both the state- and op-based approaches, the payload is a set. Since add is based on union, and union is commutative, the op-based implementation converges; G-Set is a CmRDT.
+> 
+> In the state-based approach, add modifies the local state by a union. We define a partial order on some states S and T as S ≤ T ⇔ S ⊆ T and the merge operation as merge(S, T) = S ∪ T. Thus defined, states form a monotonic semilattice and merge is a LUB operation; G-Set is a CvRDT.
+
+-- <cite>[7 section 3.3.1] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+
+
+
+
+
+
+
+
+
 
 
 
