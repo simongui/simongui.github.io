@@ -158,8 +158,8 @@ Some data types that have been designed to be convergent are:
 > For example, in Figure 18, timestamps are represented as a pair (local-clock.client-UID). Client 3 added character I at time 30, then R at time 31, to the right of N. Clients 2 and 3 concurrently (at time 40) inserted an L and an apostrophe to the right of the beginning-of- text marker ⊢.
 > 
 > As noted above, RGA is a CRDT because it is a subclass of Add-Remove Partial Order.
-
--- <cite>[7 section 3.5.1] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
+>
+> -- <cite>[7 section 3.5.1] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **AWORSet: A add-wins optimized observed-remove set that allows adds and removes**
 
