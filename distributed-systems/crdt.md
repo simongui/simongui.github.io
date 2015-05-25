@@ -36,6 +36,7 @@ Some data types that have been designed to be convergent are:
 -- <cite>[7 section 3.1.2] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 **State-based PN Counter**
+
 > It is not straightforward to support decrement with the previous representation, because this operation would violate monotonicity of the semilattice. Furthermore, since merge is a max operation, decrement would have no effect.
 
 > Our solution, PN-Counter basically combines two G-Counters. Its payload consists of two vectors: P to register increments, and N for decrements. Its value is the difference between the two corresponding G-Counters, its partial order is the conjunction of the corresponding partial orders, and merge merges the two vectors.
