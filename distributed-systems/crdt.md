@@ -18,6 +18,24 @@ There are 2 types of CRDT's. State-based (CvRDT) and operation-based (CmRDT).
 -- <cite>[7] A comprehensive study of Convergent and Commutative Replicated Data Types</cite>
 
 Some data types that have been designed to be convergent are:    
+
+**State-based increment-only Counter (G-Counter)**
+
+> A state-based counter is not as straightforward as one would expect. To simplify the problem, we start with a Counter that only increments.
+>
+> Suppose the payload was a single integer and merge computes max. This data type is a CvRDT as its states form a monotonic semilattice. Consider two replicas, with the same initial state of 0; at each one, a client originates increment. They converge to 1 instead of the expected 2.
+> 
+> Suppose instead the payload is an integer and merge adds the two values. This is not a CvRDT, as merge is not idempotent.
+> 
+> We propose instead the construct of Specification 6 (inspired by vector clocks). The payload is vector of integers; each source replica is assigned an entry. To increment, add 1 to the entry of the source replica. The value is the sum of all entries. We define the partial order over two states X and Y by X ≤ Y ⇔ ∀i ∈ [0,n−1] : X.P[i] ≤ Y.P[i], where n is the number of replicas. Merge takes the maximum of each entry. This data type is a CvRDT, as its states form a monotonic semilattice, and merge produces the LUB.
+> 
+> This version makes two important assumptions: the payload does not overflow, and the set of replicas is well-known. Note however that the op-based version implicitly makes the same two assumptions.
+> 
+> Alternatively, G-Set (described later, Section 3.3.1) can serve as an increment-only counter. G-Set works even when the set of replicas is not known.
+
+
+
+
 **GSet:** A grow only    
 **2PSet:** A two phase set that supports removing an element for ever    
 **GCounter:** A grow only counter    
