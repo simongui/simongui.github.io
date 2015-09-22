@@ -10,7 +10,11 @@ This page is the home page for information on distributed systems and transactio
 ## Introduction material
 [Fallacies of distributed computing](http://en.wikipedia.org/wiki/Fallacies_of_distributed_computing){:target="_blank"}
 
+[The network is reliable](https://aphyr.com/posts/288-the-network-is-reliable){:target="_blank"}
+
 [The CAP FAQ](http://henryr.github.io/cap-faq/){:target="_blank"}
+
+[A Critique of the CAP Theorem](http://arxiv.org/pdf/1509.05393v2.pdf){:target="_blank"}
 
 [Notes on distributed systems for young bloods](http://www.somethingsimilar.com/2013/01/14/notes-on-distributed-systems-for-young-bloods/){:target="_blank"}
 
