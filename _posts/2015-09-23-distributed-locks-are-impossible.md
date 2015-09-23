@@ -16,7 +16,7 @@ Distributed systems typically communicate over asynchronous networks using proto
 
 Attempting to build distributed transactions across non-transactional service instances is impossible because of the inability to open, commit or abort a transaction across multiple parties using the lock service as the coordinator.   
 
-If you're building a billing system for example you cannot guarantee you won't bill someone more than once. You cannot offer `exactly-once` guarantees under all posible failure cases.
+If you're building a billing system for example you cannot guarantee you won't bill someone more than once. You cannot offer `exactly-once` guarantees under all possible failure cases.
 
 # Timeouts, pauses and the critical section
 Distributed systems experience varying degrees of latency and typically implement timeouts. A distributed lock usually has an expiration timeout defined to prevent deadlocks in the case the lock owner dies or gets partitioned. Any timing skew like large pauses in the network or the threads themselves can cause failures to the safety of the locking algorithm. JVM/Go/CLR/Ruby/any garbage collector could pause all threads and process a stop-the-world GC pause. This pause can take an unknown length of time. If you use a programming language or runtime without a garbage collector you're not free from this problem either. The paper [SuperMalloc: A Super Fast Multithreaded malloc for 64-bit Machines](http://delivery.acm.org/10.1145/2760000/2754178/p41-kuszmaul.pdf?ip=216.191.105.146&id=2754178&acc=OPENTOC&key=4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E9F04A3A78F7D3B8D&CFID=715610675&CFTOKEN=45790005&__acm__=1442957843_7706f3a0f8696873b3fe7493296c835d) mentions the following.
