@@ -74,4 +74,4 @@ Process1                      Proces
 
 ```
 
-
+This space-time diagram illustrates how the critical sections of `Process1` and `Process2` were both able to run at the same time. Only once `Process1` detected it no longer had the lock did it stop executing. This leaves the system in an unknown state because both processes were executing operations. It's especially unclear what `Process1` should do if it cannnot abort or rollback a transaction when it detects the lock is lost.
