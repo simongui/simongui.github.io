@@ -36,7 +36,7 @@ Process1                      Proces
    |                             | Acquiring lock request      |     
    |                             | +-------------------------> |     
    |                             |                             |     
-   | Critical section executing  |                             |     
+   | Critical section executes   |                             |     
    | +----+                      |                             |     
    |      |                      |                             |     
    |      |                      |                             |     
