@@ -74,3 +74,5 @@ With Elasticsearch re-indexes and mappings changes cause temporary downtime. Ela
 Cassandra is one of the few rare solutions you can take off the shelf and create a system that scales in the thousands of nodes but it's not visibly proven to me that Elassandra enables a capable thousand node search cluster. Cassandra does replace several weaknesses in Elasticsearch's distributed implementations which makes it easier to operate, more efficient and capable of scaling to larger clusters than vanilla Elasticsearch however Cassandra cannot improve Elasticsearch's query coordination if any implementations show wear at that kind of scale.
 
 Even with that in mind, I think Elassandra has great promise and leveraging Cassandra's features can make  Elasticsearch clusters easier to scale to larger clusters, easier to operate and improve availability with zero downtime operations and multi-datacenter replication.
+
+Remi Trouville and the Elassandra core developer Vincent Royer will be talking about Elassandra at the [2016 Cassandra Summit]( http://myeventagenda.com/sessions/1CBFC920-807D-41C1-942C-8D1A7C10F4FA/5/5#sessionID=116){:target="_blank"}.
