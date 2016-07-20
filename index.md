@@ -16,7 +16,7 @@ title: Simon Guindon
         <a class="nine columns" href="{{ post.url }}">{{ post.title }}</a>
       {% endif %}
 
-      <span class="two columns">{{ post.date | date: "%b %Y" }}</span>
+      <span class="two columns">{{ post.date | date: "%B %d, %Y" }}</span>
     </li>
   {% endfor %}
 </ul>
