@@ -23,6 +23,7 @@ This page is the home page for information on distributed systems and transactio
 [Time, Clocks, and the Ordering of Events in a Distributed System](http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf){:target="_blank"}
 
 ## Categories
+<!--
 [Consistency Models](consistency-models.html)    
 Read Uncommitted, Read Committed, Linearizability, Serializability, Sequential, etc.
 
@@ -31,12 +32,14 @@ Jepsen tests of Mongo, Elastic Search, Etcd, Consul, Postgres, Kafka, Aerospike,
 
 [Consensus Protocols](consensus-protocols.html)    
 Paxos, Multi-Paxos, Raft, Corfu, etc.
+-->
 
 [Eventual Consistency](eventual-consistency.html)    
 Dynamo, CRDT's, etc.
 
+<!--
 [Epidemic Protocols](epidemic-protocols.html)    
 Gossip, Self-Healing Spanning Tree's (PlumTree), etc.
-
+-->
 [Post Mortems](post-mortems.html)    
 Post mortem (or root cause analysis) write-ups in the industry we can learn from.
