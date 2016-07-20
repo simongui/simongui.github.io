@@ -34,7 +34,7 @@ Replicas get stored on nodes in a clock wise fashion starting from the primary. 
 <img width="" height="" src="/images/2016-07-18-cassandra-vnodes.png"/>
 <small>source: [datastax.com](http://www.datastax.com/dev/blog/virtual-nodes-in-cassandra-1-2)</small>
 
-The key difference here is Cassandra's unit of distribution is at the record-level using a DHT while Elasticsearch uses large shards.
+The key difference here is Cassandra's unit of distribution is at the row level using a DHT while Elasticsearch uses shards that are large partitions of an index.
 
 # Replication
 Since Cassandra is primarily (but not only) an eventually consistent data store the replication techniques implemented in Cassandra have far more forgiving requirements on latency and failures. Cassandra is designed with multi-datacenter replication in mind. The replication techniques implemented in Elasticsearch are opposite of that of Cassandra's and they do not work smoothly over WAN's between multi-datacenters. Most organizations have to create a customized solution (like Kafka) to replicate Elasticsearch data between datacenters because the built in replication isn't suitable.
