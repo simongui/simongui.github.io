@@ -63,7 +63,7 @@ Both Elasticsearch and Cassandra replicate data to increase resiliency so that d
 
 On paper the dynamic behaviour of shard re-allocation during node failures that Elasticsearch does sounds like a good idea but in my experience it has always created an even worse situation across more nodes than the individual node failure should be causing.
 
-The purpose of having `N-replicas` is so that you can survive `N-failures`. Cassandra uses a static replication factor. If you lose a node the total copies of data will go from 4 to 3 and stay that way until the node returns or you remove the node from the cluster permanently. Transient failures won't cause unexpected and sudden impact in the way Elasticsearch does.
+The purpose of having `N-replicas` is so that you can survive `F-failures`. Cassandra uses a static replication factor. If you lose a node the total copies of data will go from 4 to 3 and stay that way until the node returns or you remove the node from the cluster permanently. Transient failures won't cause unexpected and sudden impact in the way Elasticsearch does.
 
 The key is to pick the right replication factor that suits how many failures you feel comfortable sustaining. Once that is chosen you can build a cluster that performs properly and you can more easily capacity plan because you won't experience these sudden changes when a node fails.
 
