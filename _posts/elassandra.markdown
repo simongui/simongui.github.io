@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Elassandra - large scale multi-datacenter elasticsearch
+date: 2016-07-20
+draft: false
 ---
 
 [Elassandra](https://github.com/vroyer/elassandra){:target="_blank"} is a GitHub project that integrates Cassandra and Elasticsearch. Elassandra takes the advantages of both and combines them to provide the ability to have a distributed, highly available multi-datacenter search and secondary index data store.
