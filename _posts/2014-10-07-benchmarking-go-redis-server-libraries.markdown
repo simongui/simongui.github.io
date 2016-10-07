@@ -15,7 +15,7 @@ I needed to support the Redis protocol in a soon to be announced project and I t
 - This is _not_ a localhost test. The network between the two machines is `2x bonded 10GbE`.
 
 # Software setup
-The Go in-memory Map implementations for Redcon and Redeo are sharded but each shard is protected by a writer lock. I've written a tool called [Tantrum](){:target="_blank"} to aid in automating the benchmark runs and visualizing the results. With the help of a script and Tantrum I've benchmarked various configurations of concurrent clients and pipelined requests to see how different workloads affect performance. I've benchmarked the combinations of the following configurations.
+The Go in-memory Map implementations for Redcon and Redeo are sharded but each shard is protected by a writer lock. I've written a tool called [Tantrum](https://github.com/simongui/tantrum){:target="_blank"} to aid in automating the benchmark runs and visualizing the results. With the help of a script and Tantrum I've benchmarked various configurations of concurrent clients and pipelined requests to see how different workloads affect performance. I've benchmarked the combinations of the following configurations.
 
 **Connections:** `64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384`    
 **Pipelined requests:** `1, 4, 8, 16, 32, 64, 128`
