@@ -73,3 +73,5 @@ Each benchmark run lasts for `10 minutes` per service for a total duration of `3
 ![37m6.338372132s       128/32](http://i.imgur.com/rJXdwoj.jpg)
 ![34m4.376775327s       128/64](http://i.imgur.com/4atTyLt.jpg)
 ![35m12.063702525s      128/128](http://i.imgur.com/ZWvtUJi.jpg)
+![30m43.359264281s      256/1](http://i.imgur.com/ZNHkRDr.jpg)
+![31m38.929016957s      256/4](http://i.imgur.com/yA9xqId.jpg)
