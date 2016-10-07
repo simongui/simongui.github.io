@@ -7,7 +7,7 @@ draft: true
 There's been a lot of discussions on Twitter and the Go performance slack channel recently about performance of Go libraries that provide functionality for implementing Redis protocol compatible services. These libraries allow you to implement a Redis server. There are 2 libraries in particular that seem to be of interest in the community. [Redcon](https://github.com/tidwall/redcon){:target="_blank"} and [Redeo](https://github.com/bsm/redeo){:target="_blank"}. I needed to support the Redis protocol in a soon to be announced project and I thought I would publish my benchmark findings while evaluating these libraries.
 
 # Go garbage collector
-The Go garbage collector has received some nice performance improvements as of late but the Go `1.7` GC still struggles with larger heaps. This can surface with one or multiple large `Map` instances. You can read the [details here](https://github.com/golang/go/issues/15847#issuecomment-247453018){:target="_blank"}. Luckily in `master` there's a fix that reduces GC pauses in these cases by `10x` which can make a `900ms` pause down to `90ms` which is a great improvement. I've decided to benchmark against this fix because this will likely ship in Go version `1.8`.
+The Go garbage collector has received some nice performance improvements as of late but the Go 1.7 GC still struggles with larger heaps. This can surface with one or multiple large Map instances. You can read the [details here](https://github.com/golang/go/issues/15847#issuecomment-247453018){:target="_blank"}. Luckily in `master` there's a fix that reduces GC pauses in these cases by `10x` which can make a `900ms` pause down to `90ms` which is a great improvement. I've decided to benchmark against this fix because this will likely ship in Go version 1.8.
 
 # Hardware setup
 - Client and servers are on independent machines.
@@ -16,7 +16,7 @@ The Go garbage collector has received some nice performance improvements as of l
 - This is _not_ a localhost test. The network between the two machines is `2x bonded 10GbE`.
 
 # Software setup
-The Go in-memory `Map` implementations for `Redcon` and `Redeo` are sharded but each shard is protected by a writer lock. I've written a tool called [tantrum](){:target="_blank"} to aid in automating the benchmark runs and visualizing the results. With the help of a script and Tantrum I've benchmarked various configurations of concurrent clients and pipelined requests to see how different workloads affect performance. I've benchmarked the combinations of the following configurations.
+The Go in-memory Map implementations for Redcon and Redeo are sharded but each shard is protected by a writer lock. I've written a tool called [tantrum](){:target="_blank"} to aid in automating the benchmark runs and visualizing the results. With the help of a script and Tantrum I've benchmarked various configurations of concurrent clients and pipelined requests to see how different workloads affect performance. I've benchmarked the combinations of the following configurations.
 
 **Connections:** `64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384`    
 **Pipelined requests:** `1, 4, 8, 16, 32, 64, 128`
@@ -29,11 +29,11 @@ It's not uncommon in production to have thousands or ten thousand client connect
 Redis in these results used less CPU resources but it's single threaded design limits its ability to fully utilize all the CPU cores.
 
 ```
-----system---- ----total-cpu-usage---- -dsk/total- -net/total- ---paging-- ---system-- ----most-expensive----
-     time     |usr sys idl wai hiq siq| read  writ| recv  send|  in   out | int   csw |  block i/o process
-07-10 03:39:01|  4   1  94   0   0   1|   0     0 |  56M 8548k|   0     0 |  42k  441 |
-07-10 03:39:02|  4   1  94   0   0   1|   0     0 |  56M 8539k|   0     0 |  42k  420 |
-07-10 03:39:03|  4   1  94   0   0   1|   0     0 |  56M 8553k|   0     0 |  42k  416 |
+----system---- ----total-cpu-usage---- -dsk/total- -net/total- ---most-expensive---
+     time     |usr sys idl wai hiq siq| read  writ| recv  send|  block i/o process
+07-10 03:39:01|  4   1  94   0   0   1|   0     0 |  56M 8548k|
+07-10 03:39:02|  4   1  94   0   0   1|   0     0 |  56M 8539k|
+07-10 03:39:03|  4   1  94   0   0   1|   0     0 |  56M 8553k|
 ```
 
 Redcon and Redeo both utilized multiple CPU cores better than Redis and allow higher throughput per process however not as efficiently as Redis. This means that 1 Redcon or Redeo process can out perform 1 Redis process however if you ran multiple Redis processes you would experience higher throughput than Redcon or Redeo (at the cost of deployment complexity).
@@ -41,11 +41,11 @@ Redcon and Redeo both utilized multiple CPU cores better than Redis and allow hi
 This is a Hyperthreaded machine which means `50% (usr + sys)` usage indicates near CPU saturation. This means the lack of free CPU cycles is getting in the way of greater throughput.
 
 ```
-----system---- ----total-cpu-usage---- -dsk/total- -net/total- ---paging-- ---system-- ----most-expensive----
-     time     |usr sys idl wai hiq siq| read  writ| recv  send|  in   out | int   csw |  block i/o process
-07-10 03:52:21| 35  11  51   1   0   1|   0     0 |  57M 8701k|   0     0 |  86k  270k|
-07-10 03:52:22| 35  12  51   1   0   1|   0     0 |  56M 8585k|   0     0 |  86k  277k|
-07-10 03:52:23| 33  12  52   2   0   1|   0     0 |  56M 8636k|   0     0 |  86k  275k|
+----system---- ----total-cpu-usage---- -dsk/total- -net/total- ---most-expensive---
+     time     |usr sys idl wai hiq siq| read  writ| recv  send|  block i/o process
+07-10 03:52:21| 35  11  51   1   0   1|   0     0 |  57M 8701k|
+07-10 03:52:22| 35  12  51   1   0   1|   0     0 |  56M 8585k|
+07-10 03:52:23| 33  12  52   2   0   1|   0     0 |  56M 8636k|
 ```
 
 These system metrics were captured during the 128 connections with 32 pipelined requests run. We are even experiencing IOWAIT time on the CPU during the Redcon benchmark.
@@ -72,3 +72,4 @@ Each benchmark run lasts for `10 minutes` per service for a total duration of `3
 ![35m39.355654102s      128/16](http://i.imgur.com/RvaBNNc.jpg)
 ![37m6.338372132s       128/32](http://i.imgur.com/rJXdwoj.jpg)
 ![34m4.376775327s       128/64](http://i.imgur.com/4atTyLt.jpg)
+![35m12.063702525s      128/128](http://i.imgur.com/ZWvtUJi.jpg)
