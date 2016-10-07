@@ -41,7 +41,7 @@ _Figure 1: Redis CPU usage during 128 connection / 32 pipelined request benchmar
 
 Shown in `Figure 2` Redcon and Redeo both utilized multiple CPU cores better than Redis and allow higher throughput per process however not as efficiently as Redis. This means that 1 Redcon or Redeo process can outperform 1 Redis process however if you ran multiple Redis processes you would experience higher throughput than Redcon or Redeo (at the cost of deployment complexity).
 
-This is a Hyperthreaded machine which means `50% (usr + sys)` usage indicates near CPU saturation. This means the lack of free CPU cycles is getting in the way of greater throughput.
+This is a Hyperthreaded machine which means `50% (usr + sys)` usage indicates near CPU saturation. This means the lack of free CPU cycles is getting in the way of greater throughput. `Figure 2` also shows we are experiencing IOWAIT delays.
 
 ```
 ----system---- ----total-cpu-usage---- -dsk/total- -net/total- ---most-expensive---
@@ -51,8 +51,6 @@ This is a Hyperthreaded machine which means `50% (usr + sys)` usage indicates ne
 07-10 03:52:23| 33  12  52   2   0   1|   0     0 |  56M 8636k|
 ```
 _Figure 2: Redcon and Redeo CPU usage during 128 connection / 32 pipelined request benchmark._
-
-These system metrics were captured during the 128 connections with 32 pipelined requests run. We are even experiencing IOWAIT time on the CPU during the Redcon benchmark.
 
 # Results
 Redis has more predictable latency distribution with lower outliers in the `99-100%` range than Redcon or Redeo. Redcon and Redeo have higher throughput with lower latency throughout the `0%-99%` range but exhibits higher and sometimes excessive outliers in the `99%-100%` range. I suspect this is due to the GC pauses.
