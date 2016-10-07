@@ -23,7 +23,7 @@ The Go in-memory `Map` implementations for `Redcon` and `Redeo` are sharded but 
 
 It's not uncommon in production to have thousands or ten thousand client connections to a single Redis instance.
 
-**Redis:** All disk persistence is turned off. I wrote a [custom](http://github.com/simongui/redis){:target="_blank"} version of `redis-benchmark` that supports microsecond resolution instead of millisecond resolution because we were losing a lot of fidelity in some of the results.
+**Redis:** All disk persistence is turned off. I wrote a version of `redis-benchmark` that supports microsecond resolution instead of millisecond resolution because we were losing a lot of fidelity in some of the results.
 
 # CPU efficiency
 Redis in these results used less CPU resources but it's single threaded design limits its ability to fully utilize all the CPU cores.
@@ -36,9 +36,9 @@ Redis in these results used less CPU resources but it's single threaded design l
 07-10 03:39:03|  4   1  94   0   0   1|   0     0 |  56M 8553k|   0     0 |  42k  416 |
 ```
 
-Redcon and Redeo both utilized multiple CPU cores better than Redis and allow higher throughput per process however not as efficiently as Redis. This means that 1 Redcon or Redeo process can out perform 1 Redis process however if you ran multiple Redis processes you would more likely yield higher throughput than Redcon or Redeo (at the cost of deployment complexity).
+Redcon and Redeo both utilized multiple CPU cores better than Redis and allow higher throughput per process however not as efficiently as Redis. This means that 1 Redcon or Redeo process can out perform 1 Redis process however if you ran multiple Redis processes you would experience higher throughput than Redcon or Redeo (at the cost of deployment complexity).
 
-Remember, this is a Hyperthreaded machine which means `50% (usr + sys)` usage indicates near CPU saturation. This means the lack of free CPU cycles is getting in the way of greater throughput.
+This is a Hyperthreaded machine which means `50% (usr + sys)` usage indicates near CPU saturation. This means the lack of free CPU cycles is getting in the way of greater throughput.
 
 ```
 ----system---- ----total-cpu-usage---- -dsk/total- -net/total- ---paging-- ---system-- ----most-expensive----
@@ -70,3 +70,5 @@ Each benchmark run lasts for `10 minutes` per service for a total duration of `3
 ![32m39.847335892s      128/4](http://i.imgur.com/9SNB9pY.jpg)
 ![33m22.998128944s      128/8](http://i.imgur.com/6PCYc5I.jpg)
 ![35m39.355654102s      128/16](http://i.imgur.com/RvaBNNc.jpg)
+![37m6.338372132s       128/32](http://i.imgur.com/rJXdwoj.jpg)
+![34m4.376775327s       128/64](http://i.imgur.com/4atTyLt.jpg)
