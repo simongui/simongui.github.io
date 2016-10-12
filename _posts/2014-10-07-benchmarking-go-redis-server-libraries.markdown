@@ -58,6 +58,7 @@ The combinations of the following configurations were used to record a total of 
 It's not uncommon in production environments I've seen to have thousands or tens of thousands of client connections to a single Redis instance. Each benchmark run lasts for `10 minutes` per service for a total duration of `30 minutes` of recorded results (`35 minutes` approximately with results processing).
 
 There were `2` passes of those `63` benchmark runs recorded. Each pass is `32 hours` long for a total `64 hours` of recorded benchmarking (`74 hours` total including processing).
+
 - **First pass**  
 Redis, Redcon and Redeo are freshly restarted processes but warmed up before the benchmark begins.
 - **Second pass**  
