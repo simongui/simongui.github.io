@@ -23,8 +23,6 @@ The Go in-memory Map implementations for Redcon and Redeo are sharded but each s
 The Go garbage collector has received some nice performance improvements as of late but the Go 1.7 GC still struggles with larger heaps. This can surface with one or multiple large Map instances. You can read the [details here](https://github.com/golang/go/issues/15847#issuecomment-247453018){:target="_blank"}. Luckily in `master` there's a fix that reduces GC pauses in these cases by `10x` which can make a `900ms` pause down to `90ms` which is a great improvement. I've decided to benchmark against this fix because this will likely ship in Go version 1.8.
 
 # CPU efficiency
-Shown in `Figure 1` Redis used less CPU resources but it's single threaded design limits its ability to fully utilize all the CPU cores.
-
 ```
 ----system---- ----total-cpu-usage---- -dsk/total- -net/total- ---most-expensive---
      time     |usr sys idl wai hiq siq| read  writ| recv  send|  block i/o process
@@ -34,9 +32,7 @@ Shown in `Figure 1` Redis used less CPU resources but it's single threaded desig
 ```
 _Figure 1: Redis CPU usage during 128 connection / 32 pipelined request benchmark._
 
-Shown in `Figure 2` Redcon and Redeo both utilized multiple CPU cores better than Redis and allow higher throughput per process however not as efficiently as Redis. This means that 1 Redcon or Redeo process can outperform 1 Redis process however if you ran multiple Redis processes you would experience higher throughput than Redcon or Redeo (at the cost of deployment complexity).
-
-This is a Hyperthreaded machine which means `50% (usr + sys)` usage indicates near CPU saturation. This means the lack of free CPU cycles is getting in the way of greater throughput. `Figure 2` also shows we are experiencing IOWAIT delays.
+Shown in `Figure 1` Redis used less CPU resources but it's single threaded design limits its ability to fully utilize all the CPU cores.
 
 ```
 ----system---- ----total-cpu-usage---- -dsk/total- -net/total- ---most-expensive---
@@ -46,6 +42,10 @@ This is a Hyperthreaded machine which means `50% (usr + sys)` usage indicates ne
 07-10 03:52:23| 33  12  52   2   0   1|   0     0 |  56M 8636k|
 ```
 _Figure 2: Redcon and Redeo CPU usage during 128 connection / 32 pipelined request benchmark._
+
+Shown in `Figure 2` Redcon and Redeo both utilized multiple CPU cores better than Redis and allow higher throughput per process however not as efficiently as Redis. This means that 1 Redcon or Redeo process can outperform 1 Redis process however if you ran multiple Redis processes you would experience higher throughput than Redcon or Redeo (at the cost of deployment complexity).
+
+This is a Hyperthreaded machine which means `50% (usr + sys)` usage indicates near CPU saturation. This means the lack of free CPU cycles is getting in the way of greater throughput. `Figure 2` also shows we are experiencing IOWAIT delays.
 
 # Benchmark passes
 The combinations of the following configurations were used to record a total of `63` benchmark runs.
