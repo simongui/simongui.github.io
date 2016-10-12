@@ -45,7 +45,7 @@ _Figure 2: Redcon and Redeo CPU usage during 128 connection / 32 pipelined reque
 
 Shown in `Figure 2` Redcon and Redeo both utilized multiple CPU cores better than Redis and allow higher throughput per process however not as efficiently as Redis. This means that 1 Redcon or Redeo process can outperform 1 Redis process however if you ran multiple Redis processes you would experience higher throughput than Redcon or Redeo (at the cost of deployment complexity).
 
-This is a Hyperthreaded machine which means `50% (usr + sys)` usage indicates near CPU saturation. This means the lack of free CPU cycles is getting in the way of greater throughput. I'm concerned that `Figure 2` shows they were experiencing IOWAIT delays.
+This is a Hyperthreaded machine which means `50% (usr + sys)` usage indicates near CPU saturation. This means the lack of free CPU cycles is getting in the way of greater throughput. I'm concerned that `Figure 2` shows IOWAIT delays.
 
 # Benchmark passes
 The combinations of the following configurations were used to record a total of `63` benchmark runs.
