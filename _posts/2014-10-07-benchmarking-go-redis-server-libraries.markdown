@@ -123,6 +123,7 @@ In many cases Redeo and/or Redcon out perform Redis both in throughput and laten
 [![36m57.763236335s      4096/32](http://i.imgur.com/YFVkfT6.jpg)](http://i.imgur.com/YFVkfT6.jpg){:target="_blank"}
 [![35m14.315455611s      4096/64](http://i.imgur.com/r8zOqFs.jpg)](http://i.imgur.com/r8zOqFs.jpg){:target="_blank"}
 [![33m44.700852885s      4096/128](http://i.imgur.com/R7SAIYr.jpg)](http://i.imgur.com/R7SAIYr.jpg){:target="_blank"}
+[![31m3.304851101s       8192/1](http://i.imgur.com/9uG7aAv.jpg)](http://i.imgur.com/9uG7aAv.jpg){:target="_blank"}
 
 # Second pass results
 [![31m3.322475412s       64/1](http://i.imgur.com/cUG3z9k.jpg)](http://i.imgur.com/cUG3z9k.jpg){:target="_blank"}
