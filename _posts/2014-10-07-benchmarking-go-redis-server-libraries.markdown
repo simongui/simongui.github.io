@@ -65,13 +65,15 @@ Redis, Redcon and Redeo are freshly restarted processes but warmed up before the
 Redis, Redcon and Redeo services have been running for over a week having run over `80 hours` of benchmarking. This will tell us how a longer running process performs.
 
 # Summary of results
-You can see some differences between the first and second passes for Redcon and Redeo as the longer running Go processes show signs of wear. Latency in the higher percentiles seems to spike but more notably the throughput achieved in the first pass isn't seen in the second pass. In the first pass during some runs Redcon was able to peak at `1.2 million SET requests/second` while in the second pass `300,000 SET requests/second` was the maximum throughput.
+There isn't much difference between the first and second pass results besides what I would consider regular variance. Both show throughput of `1.2 million SET requests/second` in the same runs with comparable latency characteristics.
 
 Overall Redis has more predictable latency distribution with lower outliers in the `99-100%` range than Redcon or Redeo. Redcon and Redeo have higher throughput with lower latency throughout the `0%-99%` range but exhibits higher and sometimes excessive outliers in the `99%-100%` range. I suspect this is due to the GC pauses.
 
-As client connections increase the single threaded design of Redis starts to show signs of weakness where Redcon and Redeo do not. As mentioned earlier, one solution for solving this is sharding multiple Redis processes however this article is benchmarking how each single process performs.
+As client connections increase the single threaded design of Redis starts to show signs of weakness. Redcon performs well at higher connection counts with the ability to use more CPU cores but does start to hit some limitations that show up in the response latency as the CPU gets saturated. Redeo is unpredictable. Sometimes it has great response latency at comparable throughput as Redis but sometimes it has bad response latency with the lowest throughput.
 
-In many cases Redeo and/or Redcon out perform Redis both in throughput and latency up until the `99%` mark. This isn't surprising since they aren't single threaded.
+In many cases Redcon out perform Redis both in throughput and latency. At times it can provide `2x throughput` at `50% lower latency` throughout most of the percentiles up until the `99%` mark. This isn't surprising since it isn't single threaded.
+
+Redis does very well with what it has available with a single thread. Sharding multiple Redis instances will yield great results at a complexity cost. While Redeo and more so Redcon benefit from a multi-threaded design and can sometimes handily outperform Redis, they are still falling short at maximizing the CPU resources available. At best they are `2x` higher throughput or `50%` lower latency while having over `20x` more CPU resources available. My opinion is there are some CPU bottlenecks in the code that needs some work. With a multi-threaded design and pipelining they should be able to achieve network saturation but they aren't anywhere near that because they are saturating the CPU.
 
 # First pass results
 [![30m46.145808132s      64/1](http://i.imgur.com/HNAbDOq.jpg)](http://i.imgur.com/HNAbDOq.jpg){:target="_blank"}
