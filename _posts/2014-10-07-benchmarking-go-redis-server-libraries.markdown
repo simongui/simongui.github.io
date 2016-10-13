@@ -124,6 +124,26 @@ In many cases Redeo and/or Redcon out perform Redis both in throughput and laten
 [![35m14.315455611s      4096/64](http://i.imgur.com/r8zOqFs.jpg)](http://i.imgur.com/r8zOqFs.jpg){:target="_blank"}
 [![33m44.700852885s      4096/128](http://i.imgur.com/R7SAIYr.jpg)](http://i.imgur.com/R7SAIYr.jpg){:target="_blank"}
 [![31m3.304851101s       8192/1](http://i.imgur.com/9uG7aAv.jpg)](http://i.imgur.com/9uG7aAv.jpg){:target="_blank"}
+[![32m22.559970232s      8192/4](http://i.imgur.com/LxmhpQJ.jpg)](http://i.imgur.com/LxmhpQJ.jpg){:target="_blank"}
+[![33m3.912727808s       8192/8](http://i.imgur.com/13o7rHV.jpg)](http://i.imgur.com/13o7rHV.jpg){:target="_blank"}
+[![34m40.181481378s      8192/16](http://i.imgur.com/lf0Yebj.jpg)](http://i.imgur.com/lf0Yebj.jpg){:target="_blank"}
+[![36m13.040660784s      8192/32](http://i.imgur.com/pLVOumh.jpg)](http://i.imgur.com/pLVOumh.jpg){:target="_blank"}
+[![36m41.030094708s      8192/64](http://i.imgur.com/bil2Iux.jpg)](http://i.imgur.com/bil2Iux.jpg){:target="_blank"}
+[![34m59.370625586s      8192/128](http://i.imgur.com/bil2Iux.jpg)](http://i.imgur.com/bil2Iux.jpg){:target="_blank"}
+[![31m25.524706043s      16384/1](http://i.imgur.com/ibgSRY6.jpg)](http://i.imgur.com/ibgSRY6.jpg){:target="_blank"}
+[![32m23.53607968s       16384/4](http://i.imgur.com/MzkxwLj.jpg)](http://i.imgur.com/MzkxwLj.jpg){:target="_blank"}
+[![33m12.659305177s      16384/8](http://i.imgur.com/WBYZEOm.jpg)](http://i.imgur.com/WBYZEOm.jpg){:target="_blank"}
+[![34m19.785753273s      16384/16](http://i.imgur.com/tc5JIqz.jpg)](http://i.imgur.com/tc5JIqz.jpg){:target="_blank"}
+[![35m59.43791272s       16384/32](http://i.imgur.com/VV4tNuT.jpg)](http://i.imgur.com/VV4tNuT.jpg){:target="_blank"}
+[![35m45.462468929s      16384/64](http://i.imgur.com/abfwsdM.jpg)](http://i.imgur.com/abfwsdM.jpg){:target="_blank"}
+[![37m10.095512066s      16384/128](http://i.imgur.com/GnLFGnD.jpg)](http://i.imgur.com/GnLFGnD.jpg){:target="_blank"}
+
+
+
+
+
+
+
 
 # Second pass results
 [![31m3.322475412s       64/1](http://i.imgur.com/cUG3z9k.jpg)](http://i.imgur.com/cUG3z9k.jpg){:target="_blank"}
