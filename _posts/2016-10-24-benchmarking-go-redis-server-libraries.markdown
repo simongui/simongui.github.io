@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Benchmarking go redis server libraries
-draft: true
+draft: false
 ---
 
 There has been a lot of discussions on Twitter and the Go performance slack channel recently about the performance of Go Redis protocol libraries. These libraries give you the ability to build a service of your own that supports the Redis protocol. There are 2 libraries that seem to be of interest in the community. [Redcon](https://github.com/tidwall/redcon){:target="_blank"} and [Redeo](https://github.com/bsm/redeo){:target="_blank"}.
