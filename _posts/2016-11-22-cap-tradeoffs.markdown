@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Thoughts on CAP tradeoffs
-draft: true
+draft: false
 ---
 
 Since the introduction of the [CAP theorem]() by Eric Brewer in 1999 and later [formally proven](http://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf) by Seth Gilbert and Nancy Lynch of MIT in 2002 the CAP theorem has been at times a useful way to define and discuss the **consistency**, **availability** and **partition tolerant** properties distributed systems can choose from.
