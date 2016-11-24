@@ -15,3 +15,6 @@ A system could choose to offer strongly consistent operations when healthy and e
 
 # Yahoo PNUTS
 [Yahoo PNUTS](https://people.mpi-sws.org/~druschel/courses/ds/papers/cooper-pnuts.pdf) is a research paper published by Yahoo about a geographically distributed data store. PNUT's doesn't necessarily adapt to the health of the system on the fly but it does allow operations to sacrifice consistency for availability if they choose. Users can control whether they require the latest version or can accept a potentially stale version of a record. PNUT's allows the user to sacrifice a little consistency to gain availability but doesn't take it as far as Dynamo's weak eventual consistency.
+
+# Google Spanner
+[Google Spanner](http://static.googleusercontent.com/media/research.google.com/en//archive/spanner-osdi2012.pdf) describes the support for non-blocking reads. These non-blocking reads allow to avoid locking by giving a snapshot read based on a timestamp from the past.
