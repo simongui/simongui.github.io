@@ -48,7 +48,7 @@ Transfer/sec:      2.12GB
 ```
 
 # Latency distribution results
-Measured using [wrk2](https://github.com/giltene/wrk2) from Gil Tene to properly account for coordinated omission to get correct latency results (latency results measured in Techempower are invalid).
+Measured using [wrk2](https://github.com/giltene/wrk2) from Gil Tene to properly account for coordinated omission to get correct latency results (latency results measured by Techempower are invalid).
 
 <a target="_blank" href="/images/2016-12-21-latency-1mrps.png"><img src="/images/2016-12-21-latency-1mrps.png"/></a>
 _Figure 2. Latency distribution at 1 million requests per second._
