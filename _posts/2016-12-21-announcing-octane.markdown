@@ -7,7 +7,7 @@ draft: false
 
 Performance has always been one of my interests and I've been wanting for a long time to write a high performance networking library to use for when high throughput and low latency is a priority. I really like `libuv` however by default it only offers `N:1 I/O threads to event loop threads`. This makes it hard to scale to modern many-core systems unless you deploy multiple processes per system. I want something I can scale to the physical CPU cores available in a single process.
 
-Today I'm announcing [Octane](http://github.com/simongui/octane) which extends libuv to provide this scalability. I've chosen to add octane to the [Techempower plaintext HTTP benchmarks](https://www.techempower.com/benchmarks) so that it can be measured against the worlds best HTTP servers in an independent benchmark. My PR should be completed and merged in time for round 14.
+Today I'm announcing [Octane](http://github.com/simongui/octane) which extends libuv to provide this scalability. I've chosen to add octane to the [Techempower plaintext HTTP benchmarks](https://www.techempower.com/benchmarks) so that it can be measured against the worlds fastest HTTP servers in an independent benchmark. My PR should be completed and merged in time for round 14.
 
 Ahead of round 14 I wanted to post my own benchmarks so I can give a bit of an idea of the kind of performance octane offers.
 
