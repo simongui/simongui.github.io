@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Announcing octane
-draft: true
+draft: false
 ---
 <img src="https://raw.githubusercontent.com/simongui/octane/master/logo.png"/>
 
