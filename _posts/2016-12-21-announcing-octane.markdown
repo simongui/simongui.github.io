@@ -61,3 +61,12 @@ _Figure 4. Latency distribution at 3 million requests per second._
 
 <a target="_blank" href="/images/2016-12-21-latency-5mrps.png"><img src="/images/2016-12-21-latency-5mrps.png"/></a>
 _Figure 5. Latency distribution at 5 million requests per second._
+
+<a target="_blank" href="/images/2016-12-21-latency-5mrps-octane.png"><img src="/images/2016-12-21-latency-5mrps-octane.png"/></a>
+_Figure 6. Octane latency distribution at 5 million requests per second._
+
+<a target="_blank" href="/images/2016-12-21-latency-10mrps.png"><img src="/images/2016-12-21-latency-10mrps.png"/></a>
+_Figure 7. Octane latency distribution at 10 million requests per second._
+
+# Final comments
+I wanted to publish the work I've completed so far but I have plans to continue adding features to octane to make writing high performance services easier to approach.
