@@ -21,12 +21,11 @@ Both client and server machines have identical hardware.
 # Throughput results
 In round 13 `libreactor` was the clear winner of the [plaintext](https://www.techempower.com/benchmarks/#section=data-r13&hw=ph&test=plaintext) benchmark so I benchmarked against it.
 
-### libreactor
-While libreactor is fast the CPU utilization was 75% idle during this benchmark even though network throughput was 3x less than octane can reach. This indicates to me libreactor is not scaling to use all the performance available on the machine and the network.
-
 <a target="_blank" href="/images/2016-12-21-throughput.png"><img src="/images/2016-12-21-throughput.png"/></a>
 _Figure 1. Throughput requests per second._
 
+### libreactor
+While libreactor is fast the CPU utilization was 75% idle during this benchmark even though network throughput was 3x less than octane can reach. This indicates to me libreactor is not scaling to use all the performance available on the machine and the network.
 
 ```
 Running 5m test @ http://server:8080/plaintext
