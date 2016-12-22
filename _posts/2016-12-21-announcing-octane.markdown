@@ -39,12 +39,12 @@ Transfer/sec:    675.94MB
 ### octane
 
 ```
-Running 5m test @ http://server:8000/plaintext
+Running 5m test @ http://server:8000
   20 threads and 256 connections
-  5,372,843,917 requests in 5.00m, 635.47GB read
-  Socket errors: connect 0, read 4836, write 0, timeout 0
-Requests/sec: 17,901,002.52
-Transfer/sec:      2.12GB
+  5,406,003,387 requests in 5.00m, 639.39GB read
+  Socket errors: connect 0, read 4994, write 0, timeout 0
+Requests/sec: 18,013,816.64
+Transfer/sec:      2.13GB
 ```
 
 # Latency distribution results
