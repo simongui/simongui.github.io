@@ -66,11 +66,14 @@ _Figure 3. Latency distribution at 2 million requests per second._
 <a target="_blank" href="/images/2016-12-30-latency-3mrps_json.png"><img src="/images/2016-12-30-latency-3mrps_json.png"/></a>
 _Figure 4. Latency distribution at 3 million requests per second._
 
+<a target="_blank" href="/images/2016-12-30-latency-4mrps_json.png"><img src="/images/2016-12-30-latency-4mrps_json.png"/></a>
+_Figure 5. Latency distribution at 4 million requests per second._
+
 <a target="_blank" href="/images/2016-12-30-latency-5mrps_json.png"><img src="/images/2016-12-30-latency-5mrps_json.png"/></a>
-_Figure 5. Latency distribution at 5 million requests per second._
+_Figure 6. Latency distribution at 5 million requests per second._
 
 <a target="_blank" href="/images/2016-12-30-latency-5-10mrps_json_octane.png"><img src="/images/2016-12-30-latency-5-10mrps_json_octane.png"/></a>
-_Figure 6. Octane latency distribution at 5, 6, 7, 8, 9 and 10 million requests per second._
+_Figure 7. Octane latency distribution at 5, 6, 7, 8, 9 and 10 million requests per second._
 
 # Final comments
 Octane retains its performance gap that it showed in the plaintext benchmarks in these JSON benchmarks and shows some narrow latency distribution all the way through `5 to 10 million` requests per second.
