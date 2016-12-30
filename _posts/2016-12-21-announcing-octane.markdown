@@ -49,22 +49,22 @@ Transfer/sec:      2.13GB
 # Latency distribution results
 Measured using [wrk2](https://github.com/giltene/wrk2) from Gil Tene to properly account for coordinated omission to get correct latency results (latency results measured by Techempower are invalid).
 
-<a target="_blank" href="/images/2016-12-21-latency-1mrps.png"><img src="/images/2016-12-21-latency-1mrps.png"/></a>
+<a target="_blank" href="/images/2016-12-21-latency-1mrps_plaintext.png"><img src="/images/2016-12-21-latency-1mrps_plaintext.png"/></a>
 _Figure 2. Latency distribution at 1 million requests per second._
 
-<a target="_blank" href="/images/2016-12-21-latency-2mrps.png"><img src="/images/2016-12-21-latency-2mrps.png"/></a>
+<a target="_blank" href="/images/2016-12-21-latency-2mrps_plaintext.png"><img src="/images/2016-12-21-latency-2mrps_plaintext.png"/></a>
 _Figure 3. Latency distribution at 2 million requests per second._
 
-<a target="_blank" href="/images/2016-12-21-latency-3mrps.png"><img src="/images/2016-12-21-latency-3mrps.png"/></a>
+<a target="_blank" href="/images/2016-12-21-latency-3mrps_plaintext.png"><img src="/images/2016-12-21-latency-3mrps_plaintext.png"/></a>
 _Figure 4. Latency distribution at 3 million requests per second._
 
-<a target="_blank" href="/images/2016-12-21-latency-5mrps.png"><img src="/images/2016-12-21-latency-5mrps.png"/></a>
+<a target="_blank" href="/images/2016-12-21-latency-5mrps_plaintext.png"><img src="/images/2016-12-21-latency-5mrps_plaintext.png"/></a>
 _Figure 5. Latency distribution at 5 million requests per second._
 
-<a target="_blank" href="/images/2016-12-21-latency-5mrps-octane.png"><img src="/images/2016-12-21-latency-5mrps-octane.png"/></a>
+<a target="_blank" href="/images/2016-12-21-latency-5mrps-octane_plaintext.png"><img src="/images/2016-12-21-latency-5mrps-octane_plaintext.png"/></a>
 _Figure 6. Octane latency distribution at 5 million requests per second._
 
-<a target="_blank" href="/images/2016-12-21-latency-10mrps.png"><img src="/images/2016-12-21-latency-10mrps.png"/></a>
+<a target="_blank" href="/images/2016-12-21-latency-10mrps_plaintext.png"><img src="/images/2016-12-21-latency-10mrps_plaintext.png"/></a>
 _Figure 7. Octane latency distribution at 10 million requests per second._
 
 # Final comments
