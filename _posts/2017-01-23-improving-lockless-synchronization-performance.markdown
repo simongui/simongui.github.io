@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Improving performance of lockless data structures
-draft: true
+draft: false
 ---
 
 As multi-core computer systems grow in number of processors and processor cores one of the largest challenges in software is to scale the performance of data structures to properly utilize the potential concurrent performance that modern hardware offers. To tap into this potential performance data structures need to be able to execute multiple operations at the same time with minimal synchronization between threads or else the hot path of the code risks stalling threads and wasting processor cycles. Below is probably the most common solution you'll find.
@@ -76,6 +76,6 @@ These algorithms are quite complicated to get correct but this shows the challen
 available on modern computer processors. I suggest reading the references below for more information and examples.
 
 # References and links
-1. <a target="_blank" href="http://www.rdrop.com/users/paulmck/RCU/hart_ipdps06.pdf">Making Lockless Synchronization Fast: Performance Implications of Memory Reclamation.</a>  
-2. <a target="_blank" href="http://web.cecs.pdx.edu/~walpole/class/cs510/papers/11.pdf">Hazard Pointers: Safe Memory Reclamation for Lock-Free Objects</a>  
-3. <a target="_blank" href="https://github.com/khizmax/libcds">A C++ library of concurrent data structures.</a>  
+1. <a target="_blank" href="http://www.rdrop.com/users/paulmck/RCU/hart_ipdps06.pdf">Making Lockless Synchronization Fast: Performance Implications of Memory Reclamation</a>.  
+2. <a target="_blank" href="http://web.cecs.pdx.edu/~walpole/class/cs510/papers/11.pdf">Hazard Pointers: Safe Memory Reclamation for Lock-Free Objects</a>.  
+3. <a target="_blank" href="https://github.com/khizmax/libcds">A C++ library of concurrent data structures</a>.  
