@@ -59,6 +59,7 @@ The next performance bottleneck now shifts to the reclaiming memory phase to cle
 The Swift programming language doesn't use the traditional garbage collector style memory management. Swift uses a reference counting mechanism called ARC (Automatic Reference Counting). Reference counting has high overhead and scales poorly with data structure size.
 
 There has been some [research](http://www.rdrop.com/users/paulmck/RCU/hart_ipdps06.pdf) around 3 reclamation schemes that are worth considering.
+
 * Quiescent-state-based reclamation (QSBR).
 * Epoch-based reclamation (EBR).
 * Hazard-pointer-based reclamation (HPBR).
