@@ -26,4 +26,6 @@ Here are some (but not all) of the features that Navops adds to Kubernetes.
 - Resource sharing.
 - Workload preemption.
 
+I'm going to enjoy working from home. I'll miss the office atmosphere I've had in previous jobs but not commuting every day and the added flexibility of working from home is going to be really nice. I have a well equipped home office already that will be my dedicated work space.
+
 The Kubernetes community is growing at a fast pace and my skills are in high performance code and large scale distributed systems so I think this is a great fit. I'm looking forward to joining the Univa Navops team next week and helping build exciting functionality to Kubernetes.
