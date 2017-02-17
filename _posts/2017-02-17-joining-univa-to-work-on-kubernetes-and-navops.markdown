@@ -7,7 +7,7 @@ draft: true
 I've been working in the Ottawa Ontario Canada region all my career. It has been a great city to work and it is where I grew up and still call home. After my time at Shopify I decided I would broaden my search beyond Ottawa for my next challenge and seek remote opportunities.
 
 
-Today I'm excited to announce that I'll be joining [Univa](https://www.univa.com) to work on Kubernetes and their [Navops](http://navops.io) product suite.
+Today I'm excited to announce that I'll be joining [Univa](https://www.univa.com) to work on [Kubernetes](https://kubernetes.io) and their [Navops](http://navops.io) product suite.
 
 <div style="background-color:white;padding:32px;">
   <img src="http://www.yongbok.net/blog/wp-content/uploads/2015/03/xlogo-kubernetes-h.png.pagespeed.ic.oO7RSEuMmP.png"/>  
@@ -26,4 +26,4 @@ Here are some (but not all) of the features that Navops adds to Kubernetes.
 - Resource sharing.
 - Workload preemption.
 
-Since my background is in large scale distributed systems and the Kubernetes community is growing at a fast pace I'm looking forward to working with these technologies and joining the Univa Navops team next week. 
+Since my background is in large scale distributed systems and the Kubernetes community is growing at a fast pace I'm looking forward to working with these technologies and joining the Univa Navops team next week.
