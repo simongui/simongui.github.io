@@ -26,4 +26,4 @@ Here are some (but not all) of the features that Navops adds to Kubernetes.
 - Resource sharing.
 - Workload preemption.
 
-Since my background is in large scale distributed systems and the Kubernetes community is growing at a fast pace I'm looking forward to working with these technologies and joining the Univa Navops team next week.
+The Kubernetes community is growing at a fast pace and my skills are in high performance code and large scale distributed systems so I think this is a great fit. I'm looking forward to joining the Univa Navops team next week and start helping build exciting functionality to Kubernetes.
