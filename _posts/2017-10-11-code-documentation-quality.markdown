@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Code documentation quality
-draft: true
+draft: false
 ---
 
 As I get older I start to value documentation more and more. Maybe it's because I'm getting involved with larger and more complicated projects than earlier in my career, or maybe I'm just getting older and I don't hold every possible thing in my head at once like I used to. Either way, I've come to really appreciate a well documented code base.
