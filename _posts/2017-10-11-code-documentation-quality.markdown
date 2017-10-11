@@ -15,6 +15,6 @@ Let's look at this [GIN secondary index](https://github.com/postgres/postgres/tr
 1. Detailed comments describing [what functions](https://github.com/postgres/postgres/blob/master/src/backend/access/gin/ginbtree.c#L65) do.
 1. Comments within functions to [explain logic](https://github.com/postgres/postgres/blob/master/src/backend/access/gin/ginbtree.c#L99) of the code.
 
-At my job at [Univa](http://www.univa.com) working on the [Navops](https://navops.io) project I primarily write Go. A good source for writing good documentation for Go is following the [godoc](https://blog.golang.org/godoc-documenting-go-code) tooling.
+At my job at [Univa](http://www.univa.com) I work on the [Navops](https://navops.io) project. Since Navops is a more advanced scheduling offering for Kubernetes I primarily write Go. A good source for writing good documentation for Go is following the [godoc](https://blog.golang.org/godoc-documenting-go-code) tooling.
 
 The Postgres documentation quality and code clarity is superb. There's no reason why we can't strive for similar quality in any project using any programming language.
