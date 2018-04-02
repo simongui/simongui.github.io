@@ -28,7 +28,7 @@ We wanted to improve this experience and applied a fluent style to our test help
 The following is a basic example of one of our simple tests.
 
 ```go
-// TestPackPolicySelectsCorrectCandidatesScenarioA verifies  
+// TestPackPolicySelectsCorrectPodsScenarioA verifies  
 // that the following scenario succeeds.
 //
 // Scenario A
@@ -37,7 +37,7 @@ The following is a basic example of one of our simple tests.
 // Node3: Available slots: 6 running pods 3
 //
 // RESULT: Node1 and Node2 should get pods evicted to eventually run on Node3.
-func TestPackPolicySelectsCorrectCandidatesScenarioA(t *testing.T) {
+func TestPackPolicySelectsCorrectPodsScenarioA(t *testing.T) {
     cluster := NewClusterBuilder()
     cluster.
         WithNode("node1").AsSchedulable().WithAllocatablePods(6).Build().
@@ -53,13 +53,13 @@ func TestPackPolicySelectsCorrectCandidatesScenarioA(t *testing.T) {
     cluster.WithPodPlacementStrategy("pack")
 
     // Simulate the running of the pack policy.
-    candidate := cluster.Run()
+    podsToEvict := cluster.Run()
 
     // Verify that the correct 3 pods are selected to be evicted.
-    assert.EqualValues(t, 3, len(candidate.Preemptees))
-    assert.Equal(t, "pod1", candidate.Preemptees[0].ID())
-    assert.Equal(t, "pod2", candidate.Preemptees[1].ID())
-    assert.Equal(t, "pod3", candidate.Preemptees[2].ID())
+    assert.Equal(t, 3, len(podsToEvict)
+    assert.Equal(t, "pod1", podsToEvict[0].ID())
+    assert.Equal(t, "pod2", podsToEvict[1].ID())
+    assert.Equal(t, "pod3", podsToEvict[2].ID())
 }
 ```
 
