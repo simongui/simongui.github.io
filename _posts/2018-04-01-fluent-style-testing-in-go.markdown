@@ -78,3 +78,5 @@ cluster.
     WithNode("node1").AsSchedulable().WithAllocatablePods(6).Build().
     WithNode("node2").AsUnschedulable().Build()
 ```
+# Testing convergence
+TODO.
