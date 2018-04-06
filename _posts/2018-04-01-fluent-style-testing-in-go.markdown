@@ -5,7 +5,7 @@ draft: true
 ---
 Recently my team has been working on Kubernetes eviction policies for [Navops Command](https://www.univa.com/products/navops.php). We have some exciting new features coming soon and I'm delighted to write a bit about how we tested them along the way. 
 
-Similar to Kubernetes, Navops Command is written in Go and we needed a few improvements to make the process of development, testing and verifying safety guarantees to be more efficient so that engineers could iterate quickly and test clustered scenarios thoroughly. 
+Just like Kubernetes, Navops Command is written in Go and we needed a few improvements to make the process of development, testing and verifying safety guarantees to be more efficient so that engineers could iterate quickly and test clustered scenarios thoroughly. 
 
 The challenge with testing clustered features is that not everyone has the ability to spin up 1,000 node clusters and even if you did, running tests on them takes a lot of time and these environments aren't efficient for iterating quickly during development. Writing tests that use simulated clusters isn't a new concept but it's one that if your code is designed from the ground up to be easily simulated it becomes much easier. 
 
