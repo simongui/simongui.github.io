@@ -5,9 +5,9 @@ draft: true
 ---
 Recently my team has been working on Kubernetes eviction policies for [Navops Command](https://www.univa.com/products/navops.php). We have some exciting new features coming soon and I'm delighted to write a bit about how we tested them along the way. 
 
-Just like Kubernetes, Navops Command is written in Go and we needed a few improvements to make the process of development, testing and verifying safety guarantees to be more efficient so that engineers could iterate quickly and test clustered scenarios thoroughly. 
+Containerization is popular these days and at Univa we have a lot experience with large scale containerized clusters that dates back before solutions like Kubernetes existed. We are excited to bring our experience to the Kubernetes community with Navops Command. Just like Kubernetes, Navops Command is written in Go and we needed a few improvements to make the process of development, testing and verifying safety guarantees to be more efficient so that engineers could iterate quickly and test clustered scenarios thoroughly.
 
-The challenge with testing clustered features is that not everyone has the ability to spin up 1,000 node clusters and even if you did, running tests on them takes a lot of time and these environments aren't efficient for iterating quickly during development. Writing tests that use simulated clusters isn't a new concept but it's one that if your code is designed from the ground up to be easily simulated it becomes much easier. 
+We are always trying to improve how we test our solutions. The challenge with testing clustered features is that not everyone has the ability to spin up 1,000 node clusters and even if you did, running tests on them takes a lot of time and these environments aren't efficient for iterating quickly during development. Writing tests that use simulated clusters isn't a new concept but it's one that if your code is designed from the ground up to be easily simulated it becomes much easier. 
 
 A few key improvements we put effort into that really improved our simulated cluster tests that I would like to talk about are the following.
 1. Using a fluent style to make tests really easy to read and write.
@@ -88,7 +88,7 @@ _Figure 4. Fluent style test helper function chaining._
 _Figure 4._ is an example of how much we can improve the readability and understandability of tests.
 
 # Testing convergence
-Cluster state especially at large scale are rarely ever in predictable states and more closely exhibit the properties of an eventually consistent system. With this in mind testing convergence is behaviing how we expect is important in Navops Command. We want to ensure our policies are considering the following.
+Cluster state especially at large scale is rarely ever predictable and more closely exhibit the properties of an eventually consistent system. Testing convergence and verifying whether cluster state behaves how we expect is important in Navops Command. We want to ensure our policies are considering the following.
 
 1. Cluster eventually converges to an expected state.
 1. Convergence is timely and efficient but not overly sensitive that we cause cluster instability (thrashing, flapping, etc).
