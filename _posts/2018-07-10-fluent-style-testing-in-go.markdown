@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Fluent style testing in Go
-draft: true
+draft: false
 ---
 Recently my team has been working on Kubernetes eviction policies for [Navops Command](https://www.univa.com/products/navops.php). Navops Command offers advanced scheduling, multi-tenancy and advanced policy management for Kubernetes. We are excited to bring these new eviction policies to the Kubernetes world and I'm delighted to write a bit about how we tested them along the way.
 
