@@ -3,7 +3,7 @@ layout: post
 title: Joining Storj Labs
 draft: true
 ---
-![](https://cdn.freebiesupply.com/logos/large/2x/storj-1-logo-png-transparent.png)
+![](https://storj.io/img/logo-blue.svg)
 
 I'm excited to announce that later this month I'll be joining the engineering team at [Storj Labs](https://storj.io)! 
 
