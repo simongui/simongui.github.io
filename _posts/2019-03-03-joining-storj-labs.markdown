@@ -3,7 +3,7 @@ layout: post
 title: Joining Storj Labs
 draft: true
 ---
-![](https://storj.io/img/storj-logo.jpg)
+![](https://banner2.kisspng.com/20180417/ice/kisspng-storj-cryptocurrency-cloud-storage-blockchain-clou-share-5ad5ff1570aa31.3069459615239739094615.jpg)
 
 I'm excited to announce that later this month I'll be joining the engineering team at [Storj Labs](https://storj.io)! 
 
