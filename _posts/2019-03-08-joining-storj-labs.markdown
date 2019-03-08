@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Joining Storj Labs
-draft: true
+draft: false
 ---
 ![](https://storj.io/img/logo-blue.svg)
 
