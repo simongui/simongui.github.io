@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How deletes affect performance with CockroachDB
-draft: true
+draft: false
 ---
 
 Our team here at Storj Labs is currently in the middle of adding support for CockroachDB, which is a horizontally scalable Postgres compatible database. Each database technology behaves differently and it’s important to understand the tradeoffs they make to utilize them efficiently. Along the way, we are learning a lot about CockroachDB and one of the things we have learned is how deletes impact database performance.
