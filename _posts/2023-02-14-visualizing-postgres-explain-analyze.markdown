@@ -20,5 +20,5 @@ On the right side showh in _Figure 2_ of the screen we get a visual of the opera
 As always I like to thank people for the tools they open source. Thank you [DALIBO](https://blog.dalibo.com) for your work on PEV2. I've really enjoyed how easily PEV2 makes all the information I need available to troubleshoot queries.
 
 # References
-1. [PEV2](https://github.com/dalibo/pev2/blob/master/index.html)
-2. [DALIBO blog about PEV2](https://blog.dalibo.com/2021/02/09/pev2_whats_new_en.html)
+1. [PEV2](https://github.com/dalibo/pev2/blob/master/index.html).
+2. [DALIBO blog about PEV2](https://blog.dalibo.com/2021/02/09/pev2_whats_new_en.html).
