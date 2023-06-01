@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Visualing Postgres EXPLAIN ANALYZE to rapidly troubleshoot queries
+title: Visualizing Postgres EXPLAIN ANALYZE to rapidly troubleshoot queries
 draft: false
 ---
 I work with a lot of database types and while I love my terminal, at times I find visualizations can make things clearer faster especially when I sometimes don't remember all the details involved. I was working with an extremely large query in a Postgres database and I decided to hunt for any visualization tools that might exist to help me understand this problematic query much faster.
