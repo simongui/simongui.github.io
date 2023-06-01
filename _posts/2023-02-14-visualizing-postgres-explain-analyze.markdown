@@ -15,7 +15,7 @@ In _Figure 1_ on the left hand side of the UI you get the sequence tree of opera
 ![](https://blog.dalibo.com/img/202101_pev2_highlight.png)  
 _Figure 2. PEV2 right panel._
 
-On the right side showh in _Figure 2_ of the screen we get a visual of the operation tree.
+On the right side shown in _Figure 2_ of the screen we get a visual of the operation tree.
 
 As always I like to thank people for the tools they open source. Thank you [DALIBO](https://blog.dalibo.com) for your work on PEV2. I've really enjoyed how easily PEV2 makes all the information I need available to troubleshoot queries.
 
