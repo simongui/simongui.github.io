@@ -15,14 +15,14 @@ It is fairly common for these CDC events which are typically represented as inse
 
 # The risk of Change Data Capture
 Each database applies how CDC is serviced differently, but in Postgres the transaction log (WAL) is used to serve the CDC events and log position offsets are managed just like any other Postgres replica. This has the following risks.
-1. The Postgres primary cannot prune and reclaim diskspace for transaction log entries until all consumers have read those entries. This means once all consumers progress past a certain point the old transaction log entries can be deleted and disk space can be reclaimed.
-2. If the CDC pipeline is stalled for any reason and stops consuming events from the Postgres replication slot the disk space will grow until disk space is exhausted.
-3. The Postgres primary will go down.
+- The Postgres primary cannot prune and reclaim diskspace for transaction log entries until all consumers have read those entries. This means once all consumers progress past a certain point the old transaction log entries can be deleted and disk space can be reclaimed.
+- If the CDC pipeline is stalled for any reason and stops consuming events from the Postgres replication slot the disk space will grow until disk space is exhausted.
+- The Postgres primary will go down.
 
 Unfortunately with Postgres v15 and below this is a high risk for some organizations especially since CDC tools don't seem as reliable as a Postgres replicas yet and will risk critical production primary instances. The keys to mitigate this risk are the following.
-1. Plan for the worst case scenario. Measure and capacity plan to have enough disk space to troubleshoot any CDC outage you may have so that the Postgres primary can keep accepting writes even while your CDC pipeline is down.
-2. You _must_ fix the CDC pipeline before the disk space is empty or else your Postgres primary will go down.
-3. Put observability in place to monitor lag between the Postgres primary and your CDC queue and alert if you're running out of disk space to get ahead of the problem with sufficent time to fix your CDC pipeline.
+- Plan for the worst case scenario. Measure and capacity plan to have enough disk space to troubleshoot any CDC outage you may have so that the Postgres primary can keep accepting writes even while your CDC pipeline is down.
+- You _must_ fix the CDC pipeline before the disk space is empty or else your Postgres primary will go down.
+- Put observability in place to monitor lag between the Postgres primary and your CDC queue and alert if you're running out of disk space to get ahead of the problem with sufficent time to fix your CDC pipeline.
 
 # How Postgres v16 is a major improvement in Change Data Capture production risks
 The risks of CDC pipelines on Postgres v15 or below as mentioned earlier is very high due to the fact you can only attach to the primary in production but with v16 the ability to enable logical replication on a secondary has been added! This change may fly under the radar with all the exciting improvements to performance but I cannot state how important this change is to the stability and risk of production systems who want to have near real-time change data capture but are uncomfortable with the risks to the primary.
