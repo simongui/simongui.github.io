@@ -27,5 +27,7 @@ Unfortunately with Postgres v15 and below this is a high risk for some organizat
 # How Postgres v16 is a major improvement in Change Data Capture production risks
 The risks of CDC pipelines on Postgres v15 or below as mentioned earlier is very high due to the fact you can only attach to the primary in production but with v16 the ability to enable logical replication on a secondary has been added! This change may fly under the radar with all the exciting improvements to performance but I cannot state how important this change is to the stability and risk of production systems who want to have near real-time change data capture but are uncomfortable with the risks to the primary.
 
+Now that I have [Streetwise](https://streetwise.simong.io) ingesting 100 million events per day measuring 3 flavors of Postgres I may throw in a Postgres v16 instance to measure!
+
 # References
 1. [Postgres Release 16](https://www.postgresql.org/docs/16/release-16.html).
