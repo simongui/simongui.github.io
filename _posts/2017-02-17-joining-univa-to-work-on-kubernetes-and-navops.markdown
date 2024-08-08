@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Joining Univa to work on Kubernetes and Navops
-draft: false
+draft: true
 ---
 
 I've been working in the Ottawa Ontario Canada region all my career. It has been a great city to work and it is where I grew up and still call home. After my time at Shopify I decided I would broaden my search beyond Ottawa for my next challenge and seek remote opportunities.
