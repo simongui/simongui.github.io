@@ -3,9 +3,9 @@ layout: post
 title: Fluent style testing in Go
 draft: false
 ---
-Recently my team has been working on Kubernetes eviction policies for [Navops Command](https://www.univa.com/products/navops.php). Navops Command offers advanced scheduling, multi-tenancy and advanced policy management for Kubernetes. We are excited to bring these new eviction policies to the Kubernetes world and I'm delighted to write a bit about how we tested them along the way.
+Recently my team has been working on Kubernetes eviction policies for Univa Navops Command. Navops Command offers advanced scheduling, multi-tenancy and advanced policy management for Kubernetes. We are excited to bring these new eviction policies to the Kubernetes world and I'm delighted to write a bit about how we tested them along the way.
 
-Briefly there's some other exciting news you might be interested in as well. Recently Univa in partnership with Amazon AWS demonstrated [extreme acale automation by deploying more than one million cores in a single Univa Grid Engine Cluster using AWS](https://blogs.univa.com/2018/06/univa-demonstrates-extreme-scale-automation-by-deploying-more-than-one-million-cores-in-a-single-univa-grid-engine-cluster-using-aws/).
+Briefly there's some other exciting news you might be interested in as well. Recently Univa in partnership with Amazon AWS demonstrated [extreme acale automation by deploying more than one million cores in a single Univa Grid Engine Cluster using AWS]([https://blogs.univa.com/2018/06/univa-demonstrates-extreme-scale-automation-by-deploying-more-than-one-million-cores-in-a-single-univa-grid-engine-cluster-using-aws/](https://www.businesswire.com/news/home/20180627006040/en/Univa-Demonstrates-Extreme-Scale-Automation-by-Deploying-More-Than-One-Million-Cores-in-a-Single-Cluster-Using-AWS)).
 
 Containerization is popular these days and at Univa we have a lot experience with large scale containerized clusters that dates back before solutions like Kubernetes existed. We are excited to bring our experience to the Kubernetes community with Navops Command. Just like Kubernetes, Navops Command is written in Go and we needed a few improvements to make the process of development, testing and verifying safety guarantees to be more efficient so that engineers could iterate quickly and test clustered scenarios thoroughly.
 
