@@ -28,7 +28,7 @@ are being skewed by Coordinated Omission. Your response time percentiles like `p
 1-25% of traffic that's being reported incorrectly.**
 
 This can cause you the following pain.
-- Before you release you have a false sense of comfort and experience unforseen issues on launch.
+- Before you release you may have a false sense of comfort from your pre-release testing and experience unforseen issues on launch.
 - You may start to not trust the customer complaints because you are unable to reproduce the issue.
 - You may have a test workload created correctly to reproduce the issue you're investigating but you don't know it so you keep experimenting wasting time.
 - You may measure a bug fix, believe you fixed it for your customers and then they still complain.
@@ -53,6 +53,7 @@ flowchart LR
     Web_API["Web API"]
     JMeter --> Client_A --> Request_1 --> Request_2
 ```
+
 In many tools the `p50` would be reported as `1.5 seconds` but what actually happened was that `Request 2` had to wait `2 seconds` before it could dispatch. 
 In many testing tools the `start time` isn't captured until the request begins but does not account for queueing wait times caused by external forces. The `p50` should be 2.5 seconds``
 
