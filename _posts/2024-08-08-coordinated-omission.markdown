@@ -23,7 +23,7 @@ Unfortunately most popular testing tools incorrectly implement how to capture th
 This subtle bug makes the testing tool vulnerable to Coordinated Omission and the target system being measured will affect the testing tool in a way that makes response times look deceptively optimistic. This is extremely common in many tools and hides that real response times are much worse than reported.
 
 If you're generating traffic but unable to reproduce production like results that match the complaints from your customers, its possible the tool you're using isn't measuring correctly and your results
-are being skewed by Coordinated Omission. Your response time percentiles like `p75`, `p90`, `p95` and `p90` will report much better than they actually are. **Sometimes the customers raising the most hell are in that 1-25% of traffic that's being reported incorrectly.**
+are being skewed by Coordinated Omission. Your response time percentiles like `p75`, `p90`, `p95` and `p99` will report much better than they actually are. **Sometimes the customers raising the most hell are in that 1-25% of traffic that's being reported incorrectly.**
 
 This can cause you the following pain.
 - Before you release you may have a false sense of comfort from your pre-release testing and experience unforseen issues on launch.
