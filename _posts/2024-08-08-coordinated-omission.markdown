@@ -55,7 +55,7 @@ flowchart LR
 ```
 
 In many tools the `p50` would be reported as `1.5 seconds` but what actually happened was that `Request 2` had to wait `2 seconds` before it could dispatch. 
-In many testing tools the `start time` isn't captured until the request begins but does not account for queueing wait times caused by external forces. The `p50` should be 2.5 seconds``
+In many testing tools the `start time` isn't captured until the request begins but does not account for queueing wait times caused by external forces. The `p50` should be `2.5 seconds`.
 
 
 
