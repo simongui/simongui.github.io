@@ -35,10 +35,10 @@ This can cause you the following pain.
 _Figure 1. Corrected for Coordinated Omission vs Uncorrected Data._
 
 ![](https://redhatperf.github.io/post/coordinated-omission/coordinated-omission-blocked-wait-time.png)
-_Figure 2. How many tools not correcting for Coordinated Omission report Cumulative Wait Times._
+_Figure 2. How many tools not correcting for Coordinated Omission report response times._
 
 ![](https://redhatperf.github.io/post/coordinated-omission/coordinated-omission-cumulative-wait-time.png)
-_Figure 3. Actual Cumulative Wait Time experienced by users._
+_Figure 3. Actual response times experienced by users._
 
 The bugs that cause this kind of vulnerability are subtle and common but as you can see in _Figure 1, 2 and 3_ the results are not subtle at all and have a signifigant impact on the results 
 and will influence how you make your decisions.
