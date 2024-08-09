@@ -50,12 +50,12 @@ This means the target system being tested is having a side effect on how the tes
 
 Let's pretend we want to measure API response times at a rate of 1 request per second. You would expect if response times are `100ms` the workload would look something like this.
 ```
-[Benchmark Tool] --> [Request 1: 100ms] --> [Thread wait for 900ms] -> [Request 2: 100ms]
+[Tool] --> [Request 1: 100ms] --> [Thread wait for 900ms] -> [Request 2: 100ms]
 ```
 
 What if the first request takes `2 seconds`? How would a typical benchmarking tool represent the results?
 ```
-[Benchmark Tool] --> [Request 1: 2 seconds] --> [Request 2: 100ms]
+[Tool] --> [Request 1: 2 seconds] --> [Request 2: 100ms]
 ```
 A couple things to note here. The benchmark tool will immediately dispatch `Request 2` because it is overdue because of how long `Request 1` took to complete. At a rate of `1 RPS` the second request is actually delayed and sent at the wrong time and you can see now how the system under test at runtime is affecting the benchmark tools workload. The correct timing for `Request 2` is `1.1 seconds` because of the delays from the backpressure.
 
