@@ -48,24 +48,37 @@ Typically testing tools will create the configured number of clients on the conf
 
 This means the target system being tested is having a side effect on how the testing tool is measuring and dispatching the workload. 
 
-Let's pretend we want to measure API response times at a rate of 1 request per second. You would expect if response times are `100ms` the workload would look something like this.
+Let's pretend we want to measure API response times at a rate of 1 request per second. You would expect if response times are `100ms` the workload would look something like this (each dot represents 100ms).
 ```
-[Tool] --> [Request 1: 100ms] --> [Thread wait for 900ms] -> [Request 2: 100ms]
-```
+Legend:
+R1: Request 1
+R2: Request 2
+S: Thread sleep
 
-What if the first request takes `2 seconds`? How would a typical benchmarking tool represent the results?
+[R1.][SLEEP.........][R2.]
 ```
-[Tool] --> [Request 1: 2 seconds] --> [Request 2: 100ms]
+Everything is good so far. Each response is processed in `100ms` and the second request is scheduled at the correct time. What if the first request takes `2 seconds`? How would a typical benchmarking tool represent the results of backpressure?
 ```
-A couple things to note here. The benchmark tool will immediately dispatch `Request 2` because it is overdue because of how long `Request 1` took to complete. At a rate of `1 RPS` the second request is actually delayed and sent at the wrong time and you can see now how the system under test at runtime is affecting the benchmark tools workload. The correct timing for `Request 2` is `1.1 seconds` because of the delays from the backpressure.
+[R1..........1s..........]: 2,000ms
+                          [R2.]: 100ms
+```
+A couple things to note here. The benchmark tool will immediately dispatch `Request 2` because it is overdue because of how long `Request 1` took to complete. At a rate of `1 RPS` the second request is actually delayed and sent at the wrong time and you can see now how the system under test is affecting the benchmark tools workload at run time. The correct timing for `Request 2` is not `100ms` the correct timing is `2,100ms` because of the delays from the backpressure.
+
+With a 1 request per second workload the timeline should look quite a bit different.
+```
+[R1..........1s..........]: 2,000ms
+               [R2.]: 1,100ms
+```
 
 # What can you do to measure correctly?
+Now that we understand how the logic within the benchmarking tools are vulnerable to allowing the target system to accidentally control their orchestration we can dive into how to correct it.
+
 Some advice you might find is that if you run every client in a separate thread the dependency of each request will suffer from backpressure less and more accurately model how users use the system since `User A` does not coordinate with `User B`. For example in JMeter the following recommendation is documented in the JMeter manual.
 
 > As with any Load Testing tool, if you don't correctly size the number of threads, you will face the "Coordinated Omission" problem which can give you wrong or inaccurate results. If you need large-scale load testing, consider running multiple CLI JMeter instances on multiple machines using distributed mode (or not).  
 [JMeter Manual](https://jmeter.apache.org/usermanual/best-practices.html#:~:text=As%20with%20any%20Load%20Testing,distributed%20mode%20(or%20not))
 
-Unfortuantely this advice is still vulnerable to Coordinated Omission. Putting each virtual client in a separate thread only reduces the chances of the benchmarking tool accidentally coordinating with the system under test because each request depends on each other less and puts the responsibility on the CPU to scheduling them more concurrently. This doesn't correct that each virtual clients thread is still a queue dispatching requests at a desired rate and will change its rate unexpectedly when experiencing response spikes and back pressure.
+Unfortuantely this advice is still vulnerable to Coordinated Omission. Putting each virtual client in a separate thread only reduces the chances of the benchmarking tool accidentally coordinating with the system under test because each request depends on each other less and puts the responsibility on the OS and CPU to schedule them more concurrently. This doesn't correct that each virtual clients thread is still a queue dispatching requests at a rate that can be manipulated by the system under test.
 
 You can't configure your way to correcting for Coordinated Omission. If you're measuring a `1 request per second` a benchmarking tool needs to do the following to accurately measure response times.
 1. It needs to send a constant rate of requests and not accidentally coordinate with the target system.
@@ -75,10 +88,13 @@ You can't configure your way to correcting for Coordinated Omission. If you're m
 Fundamentally this is a completely different approach to designing a benchmarking tool. Unfortunately most benchmarking tools are vulnerable to inaccurate results and actually synchronize with the system under test allowing the target system to accidentally orchestrate the benchmarking tool.
 
 This is not an exhaustive list but here are some tools I'm aware of that correct for Coordinated Omission.
-[Wrk2](https://github.com/giltene/wrk2)  
-`Wrk` was a tool used by the [Techempower](https://www.techempower.com/benchmarks) industry leaders in HTTP benchmarking and used by the Microsoft ASP.NET team. Wrk was vulnerable to Coordinated Omission and Gil Tene contributed this fork called `Wrk2` that has changed how Techempower, Microsoft and many other companies in the industry measure response times.
+- [Wrk2](https://github.com/giltene/wrk2)  
+  `Wrk` was a tool used by the [Techempower](https://www.techempower.com/benchmarks) industry leaders in HTTP benchmarking and used by the Microsoft ASP.NET team. Wrk was vulnerable to Coordinated Omission and Gil Tene contributed this fork called `Wrk2` that has changed how Techempower, Microsoft and many other companies in the industry measure response times.
+- [Hyperfoil](https://github.com/Hyperfoil/Hyperfoil)
+  Reports backpressure.
 
 # References
 1. [Gil Tene's presentation about How NOT to measure latency](https://www.youtube.com/watch?v=lJ8ydIuPFeU).
 1. [Redhat performance team blog post about Coordinated Omission](https://redhatperf.github.io/post/coordinated-omission/).
 1. [ScyllaDB blog post about Coordinated Omission](https://www.scylladb.com/2021/04/22/on-coordinated-omission/).
+2. [Does Artillery prevent coordinated omission](https://github.com/artilleryio/artillery/discussions/1472).
