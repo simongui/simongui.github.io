@@ -13,11 +13,10 @@ how hardware interacts with software architecture and how distributed systems in
 If there's one thing I've learned when operating systems of this scale it's that you need to become a black belt at finding a needle in a haystack and accurate results are critical.
 
 One of the primary challenges when measuring a system is correctly accounting for [Coordinated Omission](https://redhatperf.github.io/post/coordinated-omission/) which is a subtle but impactful effect
-that commonly skews benchmark results without testers noticing. The topic was originally raised by [Gil Tene](https://www.azul.com/leadership/gil-tene/) in his [how not to measure latency](https://image.slidesharecdn.com/untitled-160328112522/75/How-NOT-to-Measure-Latency-14-2048.jpg) 
-talk. He works on a proprietary Java runtime and garbage collector known to be one of the fastest and lowest latency runtimes and GC's in the industry. He knows a thing or two about measuring latency.
+that commonly skews benchmark results without testers noticing. I first heard about Coordinated Omission in 2014 by [Gil Tene](https://www.azul.com/leadership/gil-tene/) in his [how not to measure latency](https://image.slidesharecdn.com/untitled-160328112522/75/How-NOT-to-Measure-Latency-14-2048.jpg). He works on a proprietary Java runtime and garbage collector known to be one of the fastest and lowest latency runtimes and GC's in the industry. He knows a thing or two about measuring latency.
 
-# What is Coordinated Omission
-Coordinated Omission is a side effect where a testing tool is accidentally coordinating with the system being measured causing anomalies in the `request start times` which results in invalid response times. 
+# What is Coordinated Omission?
+Coordinated Omission is a side effect where a testing tool is accidentally coordinating with the system being measured causing anomalies in the `request start times` which results in incorrect reporting of response times. 
 
 Unfortunately most popular testing tools incorrectly implement how to capture the `request start time` which makes these tools untrustable for reporting correct results.
 This subtle bug makes the testing tool vulnerable to Coordinated Omission and the target system being measured will affect the testing tool in a way that makes response times look deceptively optimistic. This is extremely common in many tools and hides that real response times are much worse than reported.
@@ -48,31 +47,7 @@ Typically testing tools will create the configured number of clients on the conf
 
 This means the target system being tested is having a side effect on how the testing tool is measuring and dispatching the workload. 
 
-Let's pretend we want to measure API response times at a rate of 1 request per second. You would expect if response times are `100ms` the workload would look something like this (each dot represents 100ms).
-```
-Legend:
-R1: Request 1
-R2: Request 2
-S: Thread sleep
-
-[R1.][SLEEP.........][R2.]
-```
-Everything is good so far. Each response is processed in `100ms` and the second request is scheduled at the correct time. What if the first request takes `2 seconds`? How would a typical benchmarking tool represent the results of backpressure?
-```
-[R1..........1s..........]: 2,000ms
-                          [R2.]: 100ms
-```
-A couple things to note here. The benchmark tool will immediately dispatch `Request 2` because it is overdue because of how long `Request 1` took to complete. At a rate of `1 RPS` the second request is actually delayed and sent at the wrong time and you can see now how the system under test is affecting the benchmark tools workload at run time. The correct timing for `Request 2` is not `100ms` the correct timing is `1,100ms` because of the delays from the backpressure.
-
-With a 1 request per second workload the timeline should look quite a bit different.
-```
-[R1..........1s..........]: 2,000ms
-               [R2.]: 1,100ms
-```
-
 # What can you do to measure correctly?
-Now that we understand how the logic within the benchmarking tools are vulnerable to allowing the target system to accidentally control their orchestration we can dive into how to correct it.
-
 Some advice you might find is that if you run every client in a separate thread the dependency of each request will suffer from backpressure less and more accurately model how users use the system since `User A` does not coordinate with `User B`. For example in JMeter the following recommendation is documented in the JMeter manual.
 
 > As with any Load Testing tool, if you don't correctly size the number of threads, you will face the "Coordinated Omission" problem which can give you wrong or inaccurate results. If you need large-scale load testing, consider running multiple CLI JMeter instances on multiple machines using distributed mode (or not).  
@@ -85,7 +60,11 @@ You can't configure your way to correcting for Coordinated Omission. If you're m
 2. The request start time should represent when it was scheduled to run, not when it actually ran so that response time can be calculated correctly.
 
 # What tools do I recommend?
-Fundamentally this is a completely different approach to designing a benchmarking tool. Unfortunately most benchmarking tools are vulnerable to inaccurate results and actually synchronize with the system under test allowing the target system to accidentally orchestrate the benchmarking tool.
+Unfortunately most benchmarking tools are vulnerable to inaccurate results and actually synchronize with the system under test allowing the target system to accidentally orchestrate the benchmarking tool. To correct for this problem the testing tool needs to be designed in a way that takes special care in how it dispatches requests and how it tracks the request start time and end time. The 2 key design considerations are the following.
+1. The testing tool needs to send a constant rate of requests and prevent accidentally being orchestrated by the system under test due to back pressure.
+2. The request start time needs to be when that request _should have been dispatched_ based on the rate so that back pressure delays are represented not hidden.
+
+Both points are extremely important to accurate results as mentioned by Gil Tene. Many benchmarking tools calculate response time based on a request start time of when the request was sent not when it _should have been sent based on the rate_.
 
 This is not an exhaustive list but here are some tools I'm aware of that correct for Coordinated Omission.
 - [Wrk2](https://github.com/giltene/wrk2)  
