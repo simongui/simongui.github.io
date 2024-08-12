@@ -62,7 +62,7 @@ Everything is good so far. Each response is processed in `100ms` and the second 
 [R1..........1s..........]: 2,000ms
                           [R2.]: 100ms
 ```
-A couple things to note here. The benchmark tool will immediately dispatch `Request 2` because it is overdue because of how long `Request 1` took to complete. At a rate of `1 RPS` the second request is actually delayed and sent at the wrong time and you can see now how the system under test is affecting the benchmark tools workload at run time. The correct timing for `Request 2` is not `100ms` the correct timing is `2,100ms` because of the delays from the backpressure.
+A couple things to note here. The benchmark tool will immediately dispatch `Request 2` because it is overdue because of how long `Request 1` took to complete. At a rate of `1 RPS` the second request is actually delayed and sent at the wrong time and you can see now how the system under test is affecting the benchmark tools workload at run time. The correct timing for `Request 2` is not `100ms` the correct timing is `1,100ms` because of the delays from the backpressure.
 
 With a 1 request per second workload the timeline should look quite a bit different.
 ```
