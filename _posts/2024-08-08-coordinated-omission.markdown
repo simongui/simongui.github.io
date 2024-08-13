@@ -4,13 +4,12 @@ title: Coordinated Omission
 draft: true
 ---
 
-I find measuring system performance whether it's a database, an API or anything else really interesting and fun. Every time I measure something new I feel like I'm always learning about 
-how hardware interacts with software architecture and how distributed systems interact with each other. I've measured a lot of things over my career. Here are a few things I'm proud of working on.
+Every time I measure something new I feel like I'm always learning about how hardware interacts with software architecture and how distributed systems interact with each other. I've measured a lot of things over my career. Here are a few things I'm proud of working on.
 
 - One of the worlds first `1,000 node` Cassandra+Solr clusters a decade ago.
 - [The first 1+ million CPU core Kubernetes cluster with 55,000 nodes that I'm aware of](https://vmblog.com/archive/2018/06/28/univa-leverages-aws-to-deploy-more-than-one-million-cores-in-a-single-univa-grid-engine-cluster.aspx).
 
-If there's one thing I've learned when operating systems of this scale it's that you need to become a black belt at finding a needle in a haystack and accurate results are critical.
+If there's one thing I've learned when operating SaaS systems it's that you need to become a black belt at finding a needle in a haystack and accurate results are critical.
 
 One of the primary challenges when measuring a system is correctly accounting for [Coordinated Omission](https://redhatperf.github.io/post/coordinated-omission/) which is a subtle but impactful effect
 that commonly skews benchmark results without testers noticing. I first heard about Coordinated Omission in 2014 by [Gil Tene](https://www.azul.com/leadership/gil-tene/) in his [how not to measure latency](https://image.slidesharecdn.com/untitled-160328112522/75/How-NOT-to-Measure-Latency-14-2048.jpg). He works on a proprietary Java runtime and garbage collector known to be one of the fastest and lowest latency runtimes and GC's in the industry. He knows a thing or two about measuring latency.
