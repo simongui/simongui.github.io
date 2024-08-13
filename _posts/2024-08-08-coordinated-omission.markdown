@@ -11,7 +11,7 @@ Every time I measure something new I feel like I'm always learning about how har
 
 If there's one thing I've learned when operating SaaS systems it's that you need to become a black belt at finding a needle in a haystack and accurate results are critical.
 
-One of the primary challenges when measuring a system is correctly accounting for [Coordinated Omission](https://redhatperf.github.io/post/coordinated-omission/) which is a subtle but impactful effect
+One of the challenges when measuring a system is correctly accounting for [Coordinated Omission](https://redhatperf.github.io/post/coordinated-omission/) which is a subtle but impactful effect
 that commonly skews benchmark results without testers noticing. I first heard about Coordinated Omission in 2014 by [Gil Tene](https://www.azul.com/leadership/gil-tene/) in his [how not to measure latency](https://image.slidesharecdn.com/untitled-160328112522/75/How-NOT-to-Measure-Latency-14-2048.jpg). He works on a proprietary Java runtime and garbage collector known to be one of the fastest and lowest latency runtimes and GC's in the industry. He knows a thing or two about measuring latency.
 
 # What is Coordinated Omission?
