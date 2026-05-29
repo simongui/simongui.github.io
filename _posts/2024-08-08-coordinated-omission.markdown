@@ -1,13 +1,13 @@
 ---
 layout: post
 title: Coordinated Omission
-draft: true
+draft: false
 ---
 
 Every time I measure something new I feel like I'm always learning about how hardware interacts with software architecture and how distributed systems interact with each other. I've measured a lot of things over my career. Here are a few things I'm proud of working on.
 
 - One of the worlds first `1,000 node` Cassandra+Solr clusters a decade ago.
-- [The first 1+ million CPU core Kubernetes cluster with 55,000 nodes that I'm aware of](https://vmblog.com/archive/2018/06/28/univa-leverages-aws-to-deploy-more-than-one-million-cores-in-a-single-univa-grid-engine-cluster.aspx).
+- [The first 1+ million CPU core Kubernetes cluster with 55,000 nodes that I'm aware of](https://www.hpcwire.com/off-the-wire/univa-deploys-over-1m-cores-in-a-single-grid-engine-cluster-using-aws/).
 
 If there's one thing I've learned when operating SaaS systems it's that you need to become a black belt at finding a needle in a haystack and accurate results are critical.
 
